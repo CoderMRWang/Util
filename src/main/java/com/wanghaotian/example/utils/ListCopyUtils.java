@@ -20,7 +20,7 @@ public class ListCopyUtils<T,R> {
      * @param:[target, resourceList]
      * @return:java.util.List<T>
      */
-    public static <T,R> List<T> listCopyToAnotherList(Class<T> target, List<R> resourceList) throws IllegalAccessException, InstantiationException {
+    public static <T,R> List<T> listCopyToAnotherList(final Class<T> target, final List<R> resourceList) throws IllegalAccessException, InstantiationException {
         if (resourceList.isEmpty()){
             return null;
         }else{
