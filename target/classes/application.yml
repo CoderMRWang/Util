@@ -1,0 +1,11 @@
+# See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+spring:
+  thymeleaf.cache: false
+  main.show-banner: false
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.128.130:9300
+      cluster-name: docker-cluster
+
+server:
+  port: 8080
