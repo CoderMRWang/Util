@@ -3,6 +3,7 @@ package com.wanghaotian.example.socket;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +43,6 @@ public class ServerSocketTest {
     public static void main(String[] args) throws IOException {
         ServerSocketTest serverSocketTest = new ServerSocketTest();
         serverSocketTest.init();
-
     }
 
     public void init() throws IOException {
@@ -50,6 +50,7 @@ public class ServerSocketTest {
         listen();
         listenCount();
         showMessage();
+        haveHeatBeat();
     }
 
     private void listen() {
@@ -65,10 +66,12 @@ public class ServerSocketTest {
                 ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
                 writeLock.lock();
                 sockets.add(socket);
+                haveHeartSockets.add(socket);
+                System.out.println("现在已经有" + sockets.size() + "个客户端进行连接.");
                 writeLock.unlock();
             }
         });
-
+        thread.setName("listen");
         thread.start();
     }
 
@@ -77,7 +80,11 @@ public class ServerSocketTest {
             while (true) {
                 ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
                 writeLock.lock();
-                System.out.println("现在已经有" + sockets.size() + "个客户端进行连接.");
+                if (haveHeartSockets.size() != sockets.size()) {
+                    sockets.clear();
+                    sockets.addAll(haveHeartSockets);
+                    System.out.println("现在已经有" + sockets.size() + "个客户端进行连接.");
+                }
                 writeLock.unlock();
                 try {
                     Thread.sleep(5000);
@@ -86,6 +93,7 @@ public class ServerSocketTest {
                 }
             }
         });
+        thread.setName("listenCount");
         thread.start();
     }
 
@@ -117,35 +125,44 @@ public class ServerSocketTest {
 
             }
         });
+        thread.setName("showMessage");
         thread.start();
 
     }
 
 
-    private void HaveHeatBeat() throws IOException {
-        int i = 0;
-        try {
-            for (Socket socket : sockets) {
-                if (!socket.isClosed()) {
-                    socket.getOutputStream().write(IF_LIVE_STRING.getBytes());
-                    if ((i = socket.getInputStream().available()) != 0) {
-                        byte[] b = new byte[i];
-                        try {
-                            socket.getInputStream().read(b);
-                            String backStr = new String(b, FONT_CODE);
-                            if (!LIVE_STRING.equals(backStr)) {
-                                haveHeartSockets.remove(socket);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+    private void haveHeatBeat() throws IOException {
+        Thread thread = new Thread(() -> {
+            while (true) {
+                int i = 0;
+                ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
+                Socket tsocket=null;
+                try {
+                    readLock.lock();
+                    for (Socket socket : sockets) {
+                        if (!socket.isClosed()) {
+                           tsocket=socket;
+                           socket.getOutputStream().write(IF_LIVE_STRING.getBytes());
                         }
-
                     }
+                } catch (SocketException socketException)
+                {
+                    haveHeartSockets.remove(tsocket);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    readLock.unlock();
                 }
             }
-        } catch (IOException e) {
+        });
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        thread.setName("HaveHeatBeat");
+        thread.start();
     }
 
     public List<Socket> getSockets() {

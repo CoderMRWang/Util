@@ -46,6 +46,7 @@ public class SocketTest {
 
                     if (IF_LIVE_STRING.equals(s)) {
                         try {
+                            System.out.println("1");
                             socket.getOutputStream().write(LIVE_STRING.getBytes());
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -63,6 +64,7 @@ public class SocketTest {
                 }
             }
         });
+        thread.setName("keepLive");
         thread.start();
     }
 
