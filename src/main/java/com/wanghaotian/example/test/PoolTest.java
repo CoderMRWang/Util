@@ -1,4 +1,4 @@
-package com.wanghaotian.example.utils;
+package com.wanghaotian.example.test;
 
 import com.wanghaotian.example.object.Item;
 

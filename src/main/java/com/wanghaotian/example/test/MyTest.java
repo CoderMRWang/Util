@@ -1,4 +1,4 @@
-package com.wanghaotian.example.xiaobing;
+package com.wanghaotian.example.test;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;

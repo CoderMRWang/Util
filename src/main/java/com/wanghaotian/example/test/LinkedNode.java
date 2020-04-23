@@ -1,4 +1,4 @@
-package com.wanghaotian.example.xiaobing;
+package com.wanghaotian.example.test;
 
 /**
  * author;Wanghaotian

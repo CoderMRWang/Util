@@ -1,6 +1,5 @@
 package com.wanghaotian.example.nio;
 
-import com.wanghaotian.example.LinkedArrayList;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -11,10 +10,6 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.FutureTask;
-import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 /**
