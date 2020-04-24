@@ -77,18 +77,14 @@ public class ServerSocketTest {
     private void listenCount() {
         Thread thread = new Thread(() -> {
             while (true) {
-                ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
-                readLock.lock();
                 if (haveHeartSockets.size() != sockets.size()) {
                     sockets.clear();
                     sockets.addAll(haveHeartSockets);
                     log.info("现在已经有{}个客户端进行连接.",sockets.size());
                 }
-                readLock.unlock();
                 dealSleep(5000,Thread.currentThread());
             }
         });
-
         thread.setName("listenCount");
         thread.start();
     }
