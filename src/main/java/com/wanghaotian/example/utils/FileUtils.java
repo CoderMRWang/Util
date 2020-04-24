@@ -1,5 +1,8 @@
 package com.wanghaotian.example.utils;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +17,7 @@ import java.util.List;
  * @date : Created in 2020/1/5
  * @modify By:
  */
+@Slf4j
 public class FileUtils {
 
     /**
@@ -24,23 +28,34 @@ public class FileUtils {
      * @return:java.util.List<java.io.File>
      */
     public static List<File> getAllfile(String path) {
-        List<File> allfilelist = new ArrayList<File>();
-        return getAllfile(new File(path), allfilelist);
+        return getAllfile(new File(path), null, null);
     }
 
-    private static List<File> getAllfile(File file, List<File> allfilelist) {
+    public static List<File> getAllFileAndConditionByType(String path, String sufferFix) {
+        return getAllfile(new File(path), null, sufferFix);
+    }
+
+
+    private static List<File> getAllfile(File file, List<File> allFileList, String suffix) {
+        allFileList = (allFileList == null) ? new ArrayList<>() : allFileList;
         if (file.exists()) {
             //判断文件是否是文件夹，如果是，开始递归
             if (file.isDirectory()) {
                 File f[] = file.listFiles();
                 for (File file2 : f) {
-                    getAllfile(file2, allfilelist);
+                    getAllfile(file2, allFileList, suffix);
                 }
             } else {
-                allfilelist.add(file);
+                if (StringUtils.isNotBlank(suffix)) {
+                    if (file.getName().endsWith(suffix)) {
+                        allFileList.add(file);
+                    }
+                } else {
+                    allFileList.add(file);
+                }
             }
         }
-        return allfilelist;
+        return allFileList;
     }
     /**
      * Description:
@@ -50,13 +65,13 @@ public class FileUtils {
      * @return:void
      */
     public static void transferFromDemo(final String from,final String to) throws IOException {
-        FileChannel fromChannel = new FileInputStream(from).getChannel();
-        FileChannel toChannel = new FileOutputStream(to).getChannel();
-        long position = 0;
-        long count = fromChannel.size();
-        toChannel.transferFrom(fromChannel, position, count);
-        fromChannel.close();
-        toChannel.close();
+        try (FileChannel fromChannel = new FileInputStream(from).getChannel();
+             FileChannel toChannel = new FileOutputStream(to).getChannel()) {
+            long position = 0;
+            long count = fromChannel.size();
+            toChannel.transferFrom(fromChannel, position, count);
+        } catch (Exception e){
+            log.info("文件复制出现异常!:%s",e.getMessage());
+        }
     }
-
 }
