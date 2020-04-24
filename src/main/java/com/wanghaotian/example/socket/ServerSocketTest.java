@@ -20,50 +20,47 @@ import static com.wanghaotian.example.socket.SocketProperty.*;
  */
 @Slf4j
 public class ServerSocketTest {
-    private static ServerSocket serverSocket;
-
-    static {
-        try {
-            serverSocket = new ServerSocket();
-        } catch (IOException e) {
-            log.info("%s",e.getMessage());
-        }
-    }
-
+    private ServerSocket serverSocket;
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private final List<Socket> sockets = Collections.synchronizedList(new ArrayList<>());
     private final List<Socket> haveHeartSockets = Collections.synchronizedList(new ArrayList<>());
-
-    public static ServerSocket getServerSocket() {
-        return serverSocket;
-    }
-
-    public static void setServerSocket(ServerSocket serverSocket) {
-        ServerSocketTest.serverSocket = serverSocket;
+    private static final int DEFAULT_PORT=9000;
+    private int port;
+    public int getPort() {
+        return port;
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocketTest serverSocketTest = new ServerSocketTest();
-        serverSocketTest.init();
+        ServerSocketTest serverSocketTest = new ServerSocketTest(PORT);
+        serverSocketTest.start();
+    }
+    public ServerSocketTest() throws IOException {
+        this.serverSocket=new ServerSocket(DEFAULT_PORT);
     }
 
-    public void init() throws IOException {
-        serverSocket = new ServerSocket(PORT);
+
+    public ServerSocketTest(int port) throws IOException {
+        this.port = port;
+        this.serverSocket=new ServerSocket(port);
+    }
+
+    public void start() throws IOException {
         listen();
         listenCount();
         showMessage();
         haveHeatBeat();
     }
 
+
     private void listen() {
         Thread thread = new Thread(() -> {
+            log.info("开始监听!");
             while (true) {
-                log.info("等待查询!");
                 Socket socket = null;
                 try {
                     socket = serverSocket.accept();
                 } catch (IOException e) {
-                    log.info("发生异常!",e.getMessage());
+                    log.info("发生异常!:{}",e.getMessage());
                 }
                 ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
                 writeLock.lock();
@@ -85,17 +82,13 @@ public class ServerSocketTest {
                 if (haveHeartSockets.size() != sockets.size()) {
                     sockets.clear();
                     sockets.addAll(haveHeartSockets);
-                    log.info("现在已经有" + sockets.size() + "个客户端进行连接.");
+                    log.info("现在已经有{}个客户端进行连接.",sockets.size());
                 }
                 writeLock.unlock();
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    log.info("");
-                    Thread.currentThread().interrupt();
-                }
+                dealSleep(5000,Thread.currentThread());
             }
         });
+
         thread.setName("listenCount");
         thread.start();
     }
@@ -113,20 +106,13 @@ public class ServerSocketTest {
                         if (length != 0) {
                             byte[] bytes = new byte[length];
                             socket.getInputStream().read(bytes);
-                            log.info("第" + (i + 1) + "个Socket消息:" + new String(bytes, StandardCharsets.UTF_8));
+                            log.info("第{}个Socket消息:{}" ,i+1,new String(bytes, StandardCharsets.UTF_8));
                         }
                     } catch (IOException e) {
-                        log.info("发生异常!%s",e.getMessage());
+                        log.info("showMessage发生异常:{}",e.getMessage());
                     }
                 }
                 readLock.unlock();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    log.info("发生异常!%s",e.getMessage());
-                    Thread.currentThread().interrupt();
-                }
-
             }
         });
         thread.setName("showMessage");
@@ -152,22 +138,26 @@ public class ServerSocketTest {
                 {
                     haveHeartSockets.remove(tsocket);
                 } catch (IOException e) {
-                    log.info("发生异常:%s",e.getMessage());
+                    log.info("发生异常:{}",e.getMessage());
                 }finally {
                     readLock.unlock();
                 }
             }
         });
 
-        try {
-            Thread.sleep(2500);
-        } catch (InterruptedException e) {
-            log.info("发生异常:%s",e.getMessage());
-            Thread.currentThread().interrupt();
-        }
         thread.setName("HaveHeatBeat");
         thread.start();
     }
+    private void dealSleep(long sleepTime,Thread thread){
+        try {
+            thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            log.info("dealSleep发生异常!信息:{}",e.getMessage());
+            thread.interrupt();
+        }
+    }
+
+
 
     public List<Socket> getSockets() {
         return sockets;
