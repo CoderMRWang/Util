@@ -43,8 +43,7 @@ public class SocketTest {
                 InputStream inputStream ;
                 try {
                     inputStream = socket.getInputStream();
-                    int length = 0;
-                    length = inputStream.available();
+                    int length = inputStream.available();
                     byte[] bytes = new byte[length];
                     int inputSize=inputStream.read(bytes);
                     String s = new String(bytes,0,inputSize,FONT_CODE);
