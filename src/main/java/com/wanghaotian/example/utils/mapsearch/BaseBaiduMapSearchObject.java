@@ -25,7 +25,7 @@ public class BaseBaiduMapSearchObject {
     private final List<Map<INDUSTRY_TYPE_ENUM, SORT_NAME_ENUM>> filter=new ArrayList<>();//过滤条件
     private CODE_TYPE_ENUM coordType;//坐标类型
     private String retCoordtype;//
-    private int pageSize;//单次大小
+    private int pageSize=40;//单次大小
     private int pageNum;//页码
     private String ak;//开发者秘钥
     private String sn;//开发者签名
@@ -36,6 +36,8 @@ public class BaseBaiduMapSearchObject {
 
     BaseBaiduMapSearchObject(SEARCH_TYPE_ENUM searchType) {
         this.searchType = searchType;
+        this.output=OUT_PUT_ENUM.JSON;
+        this.pageNum=1;
     }
 
     public enum OUT_PUT_ENUM {
@@ -48,6 +50,11 @@ public class BaseBaiduMapSearchObject {
 
         public String getStr() {
             return str;
+        }
+
+        @Override
+        public String toString() {
+            return str ;
         }
     }
 
@@ -63,6 +70,11 @@ public class BaseBaiduMapSearchObject {
 
         public int getType() {
             return type;
+        }
+
+        @Override
+        public String toString() {
+            return this.type+"";
         }
     }
 
@@ -85,6 +97,11 @@ public class BaseBaiduMapSearchObject {
 
         public int getType_key() {
             return type_key;
+        }
+
+        @Override
+        public String toString() {
+            return  type ;
         }
     }
 
@@ -128,6 +145,11 @@ public class BaseBaiduMapSearchObject {
         public int getType_key() {
             return type_key;
         }
+
+        @Override
+        public String toString() {
+            return type;
+        }
     }
 
     public enum CODE_TYPE_ENUM {
@@ -144,14 +166,23 @@ public class BaseBaiduMapSearchObject {
         public int getType() {
             return type;
         }
+
+        @Override
+        public String toString() {
+            return type+"";
+        }
     }
 
     public enum SEARCH_TYPE_ENUM {
         PLACE(1), CIRCULAR(2), RECTANGULAR(3), DETAILS(4);
         int type;
-
         SEARCH_TYPE_ENUM(int type) {
             this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return type+"";
         }
     }
 
