@@ -1,7 +1,5 @@
 package com.wanghaotian.example.utils.mapsearch;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 /**
  * @author : wanghaotian
@@ -10,8 +8,6 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-@AllArgsConstructor
-@Builder
 public class RectangularBaiduMapSearchObject extends BaseBaiduMapSearchObject {
     private String bounds;//坐标39.915,116.404,39.975,116.414
 

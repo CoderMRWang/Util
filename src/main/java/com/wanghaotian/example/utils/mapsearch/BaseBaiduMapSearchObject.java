@@ -3,6 +3,7 @@ package com.wanghaotian.example.utils.mapsearch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -16,13 +17,14 @@ import java.util.Map;
  * @modify By:
  */
 @Data
+@NoArgsConstructor
 public class BaseBaiduMapSearchObject {
     private SEARCH_TYPE_ENUM searchType;//查询类型
     private String query;//关键字,必选
     private String tag;//偏好,可选
     private OUT_PUT_ENUM output;//选择XML或JSON
     private SCOPE_ENUM scope;//详细查询或基础查询
-    private final List<Map<INDUSTRY_TYPE_ENUM, SORT_NAME_ENUM>> filter=new ArrayList<>();//过滤条件
+    private final List<Map<INDUSTRY_TYPE_ENUM, SortNameDetail>> filter=new ArrayList<>();//过滤条件
     private CODE_TYPE_ENUM coordType;//坐标类型
     private String retCoordtype;//
     private int pageSize=40;//单次大小
@@ -31,8 +33,6 @@ public class BaseBaiduMapSearchObject {
     private String sn;//开发者签名
     private Timestamp timestamp;//填写ak后必填
 
-    BaseBaiduMapSearchObject() {
-    }
 
     BaseBaiduMapSearchObject(SEARCH_TYPE_ENUM searchType) {
         this.searchType = searchType;
@@ -79,14 +79,12 @@ public class BaseBaiduMapSearchObject {
     }
 
     public enum INDUSTRY_TYPE_ENUM {
-        HOTEL("hotel", 1), CATER("cater", 2), LIFE("life", 3),
-        SORT_RULE("sort_rule", 4), PRICE_SECTION("price_section", 5),
-        GROUPON("groupon", 6), DISCOUNT("discount", 7);
+        HOTEL("hotel", 1,"酒店，旅馆"), CATER("cater", 2,"餐饮"), LIFE("life", 3,"生活");
 
         private String type;
         private int type_key;
-
-        INDUSTRY_TYPE_ENUM(String type, int type_key) {
+        private String meaning;
+        INDUSTRY_TYPE_ENUM(String type, int type_key,String meanning) {
             this.type = type;
             this.type_key = type_key;
         }
@@ -98,6 +96,7 @@ public class BaseBaiduMapSearchObject {
         public int getType_key() {
             return type_key;
         }
+
 
         @Override
         public String toString() {
@@ -122,14 +121,7 @@ public class BaseBaiduMapSearchObject {
         LIFE_PRICE("price", 3, "价格"),//价格
         LIFE_OVERALL_RATING("overall_rating", 3, "好评"),//好评
         LIFE_COMMENT_NUM("comment_num", 3, "服务"),//服务
-        LIFE_DISTANCE("distance", 3, "距离"),//距离
-        SORT_HIGHT_2_LOW("0", 4, "高到低"),//高到低
-        SORT_LOW_2_HIGHT("1", 4, "低到高"),//低到高
-        GROUPON_ON("1", 6, "有团购"),//团购
-        GROUPON_OFF("0", 6, "无团购"),//无团购
-        DISCOUNT_ON("1", 7, "有折扣"),//有折扣
-        DISCOUNT_OFF("0", 7, "无折扣");//无折扣
-
+        LIFE_DISTANCE("distance", 3, "距离");//距离
         private String type;
         private int type_key;
 
@@ -149,6 +141,43 @@ public class BaseBaiduMapSearchObject {
         @Override
         public String toString() {
             return type;
+        }
+    }
+
+    public enum SORT_RULE_ENUM{
+        SORT_RULE("sort_rule","排序规则"),PRICE_SECTION("price_section","价格区间"),GROUPON("groupon","是否有团购"),DISCOUNT("discount","是否打折");
+        private String value;
+        private String meaning;
+        SORT_RULE_ENUM(String value, String meaning) {
+            this.value = value;
+            this.meaning = meaning;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+
+
+    public enum SORT_CHOICE_ENUM{
+        SORT_HIGHT_2_LOW(0,"高到低"),//高到低
+        SORT_LOW_2_HIGHT(1, "低到高"),//低到高
+        GROUPON_ON(1, "有团购"),//团购
+        GROUPON_OFF(0, "无团购"),//无团购
+        DISCOUNT_ON(1, "有折扣"),//有折扣
+        DISCOUNT_OFF(0, "无折扣");//无折扣
+        private int value;
+        private String meaning;
+
+        SORT_CHOICE_ENUM(int value, String meaning) {
+            this.value = value;
+            this.meaning = meaning;
+        }
+
+        @Override
+        public String toString() {
+            return value+"";
         }
     }
 

@@ -50,21 +50,23 @@ public class BaiduMapSearchUtils {
 
     public static String getResult(BaseBaiduMapSearchObject baseBaiduMapSearchObject, Class clazz) {
         StringBuilder errorString = new StringBuilder();
+        String responce=null;
         if (checkRequiredItems(baseBaiduMapSearchObject, errorString)) {
             String request = setUpRequest(baseBaiduMapSearchObject, clazz);
         if (CollectionUtils.isNotEmpty(baseBaiduMapSearchObject.getFilter())) {
             StringBuilder requestBuilder = new StringBuilder();
             checkFilter(baseBaiduMapSearchObject, requestBuilder);
             log.info("after filter string {}", requestBuilder.toString());
+            request+="&"+requestBuilder;
         }
             log.info("{}", request);
-            String responce = doRequest(request);
+            responce= doRequest(request);
             log.info("返回的结果:{}", responce);
         } else {
             log.info("{}", errorString);
         }
 
-        return null;
+        return responce;
     }
 
 
@@ -87,6 +89,15 @@ public class BaiduMapSearchUtils {
                 stringBuilder.append(FIELD_TIMESTAMP_NULL);
             }
         }
+        if(CollectionUtils.isNotEmpty(baseBaiduMapSearchObject.getFilter()))
+        {
+            if (!BaseBaiduMapSearchObject.SCOPE_ENUM.DETILS.equals(baseBaiduMapSearchObject.getScope()))
+            {
+                okCount-=1;
+                stringBuilder.append(FIELD_SCOPE_ERROE);
+            }
+        }
+
         return (okCount == 0) && checkSpicalItem(baseBaiduMapSearchObject, stringBuilder);
     }
 
@@ -172,20 +183,33 @@ public class BaiduMapSearchUtils {
      * 校验过滤条件是否正确能否拼接
      */
     private static boolean checkFilter(BaseBaiduMapSearchObject baseBaiduMapSearchObject, StringBuilder stringBuilder) {
-        List<Map<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, BaseBaiduMapSearchObject.SORT_NAME_ENUM>> filterList = baseBaiduMapSearchObject.getFilter();
-        for (Map<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, BaseBaiduMapSearchObject.SORT_NAME_ENUM> map : filterList) {
-            Iterator<Map.Entry<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, BaseBaiduMapSearchObject.SORT_NAME_ENUM>> mapIt = map.entrySet().iterator();
+        List<Map<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, SortNameDetail>> filterList = baseBaiduMapSearchObject.getFilter();
+        for (Map<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, SortNameDetail> map : filterList) {
+            Iterator<Map.Entry<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, SortNameDetail>> mapIt = map.entrySet().iterator();
             while (mapIt.hasNext()) {
-                Map.Entry<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, BaseBaiduMapSearchObject.SORT_NAME_ENUM> item = mapIt.next();
+                Map.Entry<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, SortNameDetail> item = mapIt.next();
                 BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM key = item.getKey();
-                BaseBaiduMapSearchObject.SORT_NAME_ENUM value = item.getValue();
+                SortNameDetail sortNameDetail= item.getValue();
+                BaseBaiduMapSearchObject.SORT_NAME_ENUM value = sortNameDetail.getSortName();
                 if (key.getType_key() == value.getType_key()) {
-                    String keyType = key.getType();
                     String valueType = value.getType();
-                    stringBuilder.append(keyType);
-                    stringBuilder.append("=");
+                    stringBuilder.append("industry_type=");
+                    stringBuilder.append(key+"&");
+                    stringBuilder.append("sort_name:");
                     stringBuilder.append(valueType);
-                    stringBuilder.append("&");
+                    if (ObjectUtils.isNotEmpty(sortNameDetail.getChoice())) {
+
+                        Set<Map.Entry<BaseBaiduMapSearchObject.SORT_RULE_ENUM, BaseBaiduMapSearchObject.SORT_CHOICE_ENUM>> choiceSet = sortNameDetail.getChoice().entrySet();
+                        Iterator<Map.Entry<BaseBaiduMapSearchObject.SORT_RULE_ENUM, BaseBaiduMapSearchObject.SORT_CHOICE_ENUM>> iterator = choiceSet.iterator();
+                        while (iterator.hasNext())
+                        {
+                            Map.Entry<BaseBaiduMapSearchObject.SORT_RULE_ENUM,BaseBaiduMapSearchObject.SORT_CHOICE_ENUM>  entry= iterator.next();
+                            stringBuilder.append("|");
+                            stringBuilder.append(entry.getKey());
+                            stringBuilder.append(":");
+                            stringBuilder.append(entry.getValue());
+                        }
+                    }
                 } else {
                     return false;
                 }

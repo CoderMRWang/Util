@@ -1,7 +1,5 @@
 package com.wanghaotian.example.utils.mapsearch;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -11,8 +9,6 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-@AllArgsConstructor
-@Builder
 public class PlaceBaiduMapSearchObject extends BaseBaiduMapSearchObject{
     private String region;//检索行政区划区域,必选
     private boolean cityLimit;//区域数据召回限制，为true时，仅召回region对应区域内数据。可选

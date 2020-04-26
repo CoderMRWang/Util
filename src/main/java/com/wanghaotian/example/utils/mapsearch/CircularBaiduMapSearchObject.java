@@ -1,7 +1,5 @@
 package com.wanghaotian.example.utils.mapsearch;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 /**
  * @author : wanghaotian
@@ -10,8 +8,6 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-@AllArgsConstructor
-@Builder
 public class CircularBaiduMapSearchObject extends BaseBaiduMapSearchObject{
     private String location;
     private static final int DEFAULT_RADIUS=1000;

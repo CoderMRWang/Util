@@ -1,6 +1,4 @@
 package com.wanghaotian.example.utils.mapsearch;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -10,8 +8,6 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-@AllArgsConstructor
-@Builder
 public class DetailsBaiduMapSearchObject extends BaseBaiduMapSearchObject{
     private String uid;
     private String uids;
