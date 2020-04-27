@@ -1,4 +1,4 @@
-package com.wanghaotian.example.utils.mapsearch;
+package com.wanghaotian.example.utils.mapsearch.baidu;
 
 import lombok.Data;
 
@@ -9,11 +9,11 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-public class PlaceBaiduMapSearchObject extends BaseBaiduMapSearchObject{
+public class PlaceBaiduMapSearchObj extends BaseBaiduMapSearchObj {
     private String region;//检索行政区划区域,必选
     private boolean cityLimit;//区域数据召回限制，为true时，仅召回region对应区域内数据。可选
 
-     PlaceBaiduMapSearchObject(SEARCH_TYPE_ENUM searchType) {
+     PlaceBaiduMapSearchObj(SEARCH_TYPE_ENUM searchType) {
         super(searchType);
     }
 }

@@ -1,13 +1,14 @@
 package com.wanghaotian.example;
 
-import com.wanghaotian.example.utils.mapsearch.BaiduMapSearchUtils;
-import com.wanghaotian.example.utils.mapsearch.BaseBaiduMapSearchObject;
-import com.wanghaotian.example.utils.mapsearch.PlaceBaiduMapSearchObject;
-import com.wanghaotian.example.utils.mapsearch.SortNameDetail;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.json.UTF8JsonGenerator;
+import com.wanghaotian.example.utils.mapsearch.baidu.BaiduMapSearchUtils;
+import com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj;
+import com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj;
+import com.wanghaotian.example.utils.mapsearch.baidu.SortNameDetail;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -19,20 +20,24 @@ import java.util.Map;
  */
 public class MapSearchTest {
     public static void main(String[] args) {
-        PlaceBaiduMapSearchObject placeBaiduMapSearchObject = BaiduMapSearchUtils.getPlaceBaiduMapSearchObject();
+        //百度测试
+        PlaceBaiduMapSearchObj placeBaiduMapSearchObject = BaiduMapSearchUtils.getPlaceBaiduMapSearchObject();
         placeBaiduMapSearchObject.setQuery("ATM机");
         placeBaiduMapSearchObject.setAk("GQg4czMTKd2csVGqYGCyTkAyxFDu08fL");
         placeBaiduMapSearchObject.setRegion("北京");
         placeBaiduMapSearchObject.setTag("银行");
-        placeBaiduMapSearchObject.setScope(BaseBaiduMapSearchObject.SCOPE_ENUM.DETILS);
-        Map<BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM, SortNameDetail> map=new HashMap<>();
+        placeBaiduMapSearchObject.setScope(BaseBaiduMapSearchObj.SCOPE_ENUM.DETILS);
+        Map<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail> map=new HashMap<>();
         SortNameDetail sortNameDetail=new SortNameDetail();
-        sortNameDetail.setSortName(BaseBaiduMapSearchObject.SORT_NAME_ENUM.HOTEL_LEVEL);
-        Map<BaseBaiduMapSearchObject.SORT_RULE_ENUM,BaseBaiduMapSearchObject.SORT_CHOICE_ENUM> choiceEnumMap=new HashMap<>();
-        choiceEnumMap.put(BaseBaiduMapSearchObject.SORT_RULE_ENUM.SORT_RULE, BaseBaiduMapSearchObject.SORT_CHOICE_ENUM.SORT_HIGHT_2_LOW);
+        sortNameDetail.setSortName(BaseBaiduMapSearchObj.SORT_NAME_ENUM.HOTEL_LEVEL);
+        Map<BaseBaiduMapSearchObj.SORT_RULE_ENUM, BaseBaiduMapSearchObj.SORT_CHOICE_ENUM> choiceEnumMap=new HashMap<>();
+        choiceEnumMap.put(BaseBaiduMapSearchObj.SORT_RULE_ENUM.SORT_RULE, BaseBaiduMapSearchObj.SORT_CHOICE_ENUM.SORT_HIGHT_2_LOW);
         sortNameDetail.setChoice(choiceEnumMap);
-        map.put(BaseBaiduMapSearchObject.INDUSTRY_TYPE_ENUM.HOTEL, sortNameDetail);
+        map.put(BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM.HOTEL, sortNameDetail);
         placeBaiduMapSearchObject.getFilter().add(map);
-        BaiduMapSearchUtils.getResult(placeBaiduMapSearchObject,PlaceBaiduMapSearchObject.class);
+        BaiduMapSearchUtils.getResult(placeBaiduMapSearchObject, PlaceBaiduMapSearchObj.class);
+
+
+
     }
 }

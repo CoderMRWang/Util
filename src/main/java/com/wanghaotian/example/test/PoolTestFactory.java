@@ -5,6 +5,8 @@ import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * author;Wanghaotian
  * data:2020/4/12 0012

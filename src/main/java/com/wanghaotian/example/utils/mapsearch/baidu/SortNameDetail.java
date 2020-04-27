@@ -1,4 +1,4 @@
-package com.wanghaotian.example.utils.mapsearch;
+package com.wanghaotian.example.utils.mapsearch.baidu;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SortNameDetail {
-    private BaseBaiduMapSearchObject.SORT_NAME_ENUM sortName;
-    private Map<BaseBaiduMapSearchObject.SORT_RULE_ENUM,BaseBaiduMapSearchObject.SORT_CHOICE_ENUM> choice;
+    private BaseBaiduMapSearchObj.SORT_NAME_ENUM sortName;
+    private Map<BaseBaiduMapSearchObj.SORT_RULE_ENUM, BaseBaiduMapSearchObj.SORT_CHOICE_ENUM> choice;
 
 }

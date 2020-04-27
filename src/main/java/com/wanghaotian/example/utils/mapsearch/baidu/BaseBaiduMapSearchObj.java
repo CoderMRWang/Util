@@ -1,7 +1,6 @@
-package com.wanghaotian.example.utils.mapsearch;
+package com.wanghaotian.example.utils.mapsearch.baidu;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.wanghaotian.example.utils.mapsearch.MapSearchUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +8,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.OUT_PUT_ENUM.JSON;
 
 /**
  * @author : wanghaotian
@@ -18,11 +19,11 @@ import java.util.Map;
  */
 @Data
 @NoArgsConstructor
-public class BaseBaiduMapSearchObject {
+public class BaseBaiduMapSearchObj {
     private SEARCH_TYPE_ENUM searchType;//查询类型
     private String query;//关键字,必选
     private String tag;//偏好,可选
-    private OUT_PUT_ENUM output;//选择XML或JSON
+    private MapSearchUtils.OUT_PUT_ENUM output;//选择XML或JSON
     private SCOPE_ENUM scope;//详细查询或基础查询
     private final List<Map<INDUSTRY_TYPE_ENUM, SortNameDetail>> filter=new ArrayList<>();//过滤条件
     private CODE_TYPE_ENUM coordType;//坐标类型
@@ -34,29 +35,12 @@ public class BaseBaiduMapSearchObject {
     private Timestamp timestamp;//填写ak后必填
 
 
-    BaseBaiduMapSearchObject(SEARCH_TYPE_ENUM searchType) {
+    BaseBaiduMapSearchObj(SEARCH_TYPE_ENUM searchType) {
         this.searchType = searchType;
-        this.output=OUT_PUT_ENUM.JSON;
+        this.output= JSON;
         this.pageNum=1;
     }
 
-    public enum OUT_PUT_ENUM {
-        XML("xml"), JSON("json");
-        private String str;
-
-        OUT_PUT_ENUM(String str) {
-            this.str = str;
-        }
-
-        public String getStr() {
-            return str;
-        }
-
-        @Override
-        public String toString() {
-            return str ;
-        }
-    }
 
     public enum SCOPE_ENUM {
         BASIC(1, "基础信息"), DETILS(2, "详细信息");

@@ -1,4 +1,4 @@
-package com.wanghaotian.example.utils.mapsearch;
+package com.wanghaotian.example.utils.mapsearch.baidu;
 import lombok.Data;
 
 /**
@@ -8,11 +8,11 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-public class DetailsBaiduMapSearchObject extends BaseBaiduMapSearchObject{
+public class DetailsBaiduMapSearchObj extends BaseBaiduMapSearchObj {
     private String uid;
     private String uids;
 
-     DetailsBaiduMapSearchObject(SEARCH_TYPE_ENUM searchType) {
+     DetailsBaiduMapSearchObj(SEARCH_TYPE_ENUM searchType) {
         super(searchType);
     }
 }

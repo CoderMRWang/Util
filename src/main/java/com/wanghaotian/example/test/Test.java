@@ -1,28 +1,17 @@
 package com.wanghaotian.example.test;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.threads.TaskQueue;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
-import org.springframework.core.type.classreading.MetadataReader;
-import org.springframework.core.type.classreading.MetadataReaderFactory;
-import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
-import org.springframework.web.servlet.resource.PathResourceResolver;
-import org.springframework.core.io.Resource;
-
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.StampedLock;
 
 /**
  * author;Wanghaotian
  * data:2020/3/29 0029
  */
+@Slf4j
 public class Test {
     static Semaphore semaphore = new Semaphore(1);
     static Semaphore semaphoreb = new Semaphore(0);
@@ -74,29 +63,36 @@ public class Test {
 //
 //        }
 
-
-        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(4,8,3, TimeUnit.SECONDS,
+        AtomicInteger atomicInteger=new AtomicInteger(0);
+        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(4,20,3, TimeUnit.SECONDS,
                 new TaskQueue(10));
-//        ConcurrentTaskExecutor concurrentTaskExecutor=new ConcurrentTaskExecutor(threadPoolExecutor);
-//        concurrentTaskExecutor.submit(thread1);
-//        concurrentTaskExecutor.submit(thread2);
+        CyclicBarrier cyclicBarrier=new CyclicBarrier(5,()->{
+            log.info("this is a good test!");
+        });
+        for (int i=0;i<15;i++){
+            Thread thread=new Thread(()->{
+                try {
+                    log.info("{}",atomicInteger.getAndIncrement());
+                    cyclicBarrier.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            });
+            threadPoolExecutor.execute(thread);
+        }
+        Phaser phaser=new Phaser();
+//        CountDownLatch
+        Semaphore semaphore=new Semaphore(5);
+        semaphore.release(1);
+        semaphore.acquire(3);
+        log.info("1");
+        CountDownLatch countDownLatch=new CountDownLatch(2);
+        countDownLatch.countDown();
 
-        FutureTask<Boolean> futureTask=new FutureTask(thread1,true);
-        threadPoolExecutor.execute(futureTask);
-        threadPoolExecutor.execute(thread2);
-        System.out.println(">>>"+futureTask.get());
+        phaser.arriveAndAwaitAdvance();
 
-
-
-
-//        Future<Boolean> future= concurrentTaskExecutor.submit(()->{
-//            return false;
-//        });
-//        System.out.println(future.get());
-
-
-//        System.out.println("执行数量:"+threadPoolExecutor.getActiveCount());
-
-//        System.out.println("执行数量:"+threadPoolExecutor.getActiveCount());
+        StampedLock stampedLock=new StampedLock();
     }
 }

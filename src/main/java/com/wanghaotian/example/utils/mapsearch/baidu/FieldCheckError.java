@@ -1,4 +1,4 @@
-package com.wanghaotian.example.utils.mapsearch;
+package com.wanghaotian.example.utils.mapsearch.baidu;
 
 /**
  * @author : wanghaotian

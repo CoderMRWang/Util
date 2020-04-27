@@ -1,4 +1,4 @@
-package com.wanghaotian.example.utils.mapsearch;
+package com.wanghaotian.example.utils.mapsearch.baidu;
 
 import lombok.Data;
 /**
@@ -8,13 +8,13 @@ import lombok.Data;
  * @modify By:
  */
 @Data
-public class CircularBaiduMapSearchObject extends BaseBaiduMapSearchObject{
+public class CircularBaiduMapSearchObj extends BaseBaiduMapSearchObj {
     private String location;
     private static final int DEFAULT_RADIUS=1000;
     private int radius;//半径
     private boolean radius_limit;//是否严格
 
-     CircularBaiduMapSearchObject(SEARCH_TYPE_ENUM searchType) {
+     CircularBaiduMapSearchObj(SEARCH_TYPE_ENUM searchType) {
         super(searchType);
     }
 }

@@ -78,6 +78,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/lock.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/netty/NettyClient.java">
           <value>
             <set />
@@ -223,6 +228,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/MapSearchUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/PlaceBaiduMapSearchObject.java">
           <value>
             <set />
@@ -239,6 +249,161 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/SortNameDetail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/baidu/BaiduMapSearchUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/baidu/BaseBaiduMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/baidu/PlaceBaiduMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/baidu/RectangularBaiduMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/baidu/SortNameDetail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/enums/CommonMapSearchEnums.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/BaseGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/BatchGaodeMapSearch.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/BatchGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/ConvertCoordinatesGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/DirectionGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/DirectionMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/GaoDeMapSearchUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/GeoFenceMapSearch.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/GeoFenceMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/IPGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/IPMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/InputTipMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/PlaceGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/PlaceMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/PoiGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/PoiMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/RectangleGaodeTrafficMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/ReverseGeoCodingMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/StaticGaodeMapSearch.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/StaticGaodeMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/TrajectoryCorrectionMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/TrajectoryInnerObject.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/WeatherGaodeInfoMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/WeatherInfoMapSearchObj.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/place.java">
           <value>
             <set />
           </value>
