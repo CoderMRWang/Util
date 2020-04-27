@@ -1,7 +1,6 @@
 package com.wanghaotian.example.utils.mapsearch.baidu;
 
 import com.github.kevinsawicki.http.HttpRequest;
-import com.wanghaotian.example.utils.mapsearch.MapSearchUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -18,17 +17,17 @@ import static com.wanghaotian.example.utils.mapsearch.baidu.FieldCheckError.*;
  * @modify By:
  */
 @Slf4j
-public class BaiduMapSearchUtils extends MapSearchUtils {
+public class BaiduMapSearchUtils  {
     private static final String DETAILS_PREFIX = "http://api.map.baidu.com/place/v2/detail?";
     private static final String CIRCULAR_PREFIX = "http://api.map.baidu.com/place/v2/search?";
     private static final String PLACE_PREFIX = "http://api.map.baidu.com/place/v2/search?";
     private static final String RECTANGULAR_PREFIX = "http://api.map.baidu.com/place/v2/search?";
     private static final String FILTER = "filter";
     private static final String SEARCH_TYPE = "searchType";
-    private static final String DETAILS_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.DetailsBaiduMapSearchObject";
-    private static final String CIRCULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.CircularBaiduMapSearchObject";
-    private static final String PLACE_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.PlaceBaiduMapSearchObject";
-    private static final String RECTANGULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.RectangularBaiduMapSearchObject";
+    private static final String DETAILS_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.DetailsBaiduMapSearchObj";
+    private static final String CIRCULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.CircularBaiduMapSearchObj";
+    private static final String PLACE_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj";
+    private static final String RECTANGULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.RectangularBaiduMapSearchObj";
 
     public static PlaceBaiduMapSearchObj getPlaceBaiduMapSearchObject() {
         return new PlaceBaiduMapSearchObj(PLACE);

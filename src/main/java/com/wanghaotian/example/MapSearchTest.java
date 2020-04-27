@@ -1,7 +1,6 @@
 package com.wanghaotian.example;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.json.UTF8JsonGenerator;
+import com.wanghaotian.example.utils.mapsearch.MapSearchUtils;
 import com.wanghaotian.example.utils.mapsearch.baidu.BaiduMapSearchUtils;
 import com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj;
@@ -21,7 +20,7 @@ import java.util.Map;
 public class MapSearchTest {
     public static void main(String[] args) {
         //百度测试
-        PlaceBaiduMapSearchObj placeBaiduMapSearchObject = BaiduMapSearchUtils.getPlaceBaiduMapSearchObject();
+        PlaceBaiduMapSearchObj placeBaiduMapSearchObject = MapSearchUtils.getBaiduMapSearchUtils().getPlaceBaiduMapSearchObject();
         placeBaiduMapSearchObject.setQuery("ATM机");
         placeBaiduMapSearchObject.setAk("GQg4czMTKd2csVGqYGCyTkAyxFDu08fL");
         placeBaiduMapSearchObject.setRegion("北京");

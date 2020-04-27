@@ -6,7 +6,7 @@ package com.wanghaotian.example.utils.mapsearch.gaode;
  * @date : Created in 2020/4/27
  * @modify By:
  */
-public class GaoDeMapSearchUtils {
+public class GaoDeMapSearchUtils{
     private static final String REVERSE_GEOCODING_HTTP_URL= "https://restapi.amap.com/v3/geocode/geo?";//地理/逆地理
     private static final String DIRECTION_URL="https://restapi.amap.com/v3/direction/walking?";//路径规划
     private static final String PLACE_HTTP_URL="https://restapi.amap.com/v3/config/district?";//行政区查询
