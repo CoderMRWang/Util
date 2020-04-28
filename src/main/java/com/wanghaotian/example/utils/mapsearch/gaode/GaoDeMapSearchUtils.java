@@ -60,4 +60,7 @@ public class GaoDeMapSearchUtils{
     public WeatherGaodeInfoMapSearchObj getWeatherGaodeInfoMapSearchObj(){
         return new WeatherGaodeInfoMapSearchObj();
     }
+
+
+
 }

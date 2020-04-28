@@ -20,7 +20,8 @@ import java.util.Map;
 public class MapSearchTest {
     public static void main(String[] args) {
         //百度测试
-        PlaceBaiduMapSearchObj placeBaiduMapSearchObject = MapSearchUtils.getBaiduMapSearchUtils().getPlaceBaiduMapSearchObject();
+        BaiduMapSearchUtils baiduMapSearchUtils = MapSearchUtils.getBaiduMapSearchUtils();
+        PlaceBaiduMapSearchObj placeBaiduMapSearchObject =BaiduMapSearchUtils.getPlaceBaiduMapSearchObject();
         placeBaiduMapSearchObject.setQuery("ATM机");
         placeBaiduMapSearchObject.setAk("GQg4czMTKd2csVGqYGCyTkAyxFDu08fL");
         placeBaiduMapSearchObject.setRegion("北京");
