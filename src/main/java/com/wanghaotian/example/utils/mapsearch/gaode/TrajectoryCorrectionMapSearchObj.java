@@ -15,7 +15,7 @@ public class TrajectoryCorrectionMapSearchObj extends BaseGaodeMapSearchObj{
     //post方法
     private String queryString;
     private List<TrajectoryInnerObject> body;
-    private TrajectoryCorrectionMapSearchObj() {
+     TrajectoryCorrectionMapSearchObj() {
     }
 
     @Override

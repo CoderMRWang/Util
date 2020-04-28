@@ -12,8 +12,12 @@ import lombok.Data;
 public class IPGaodeMapSearchObj extends BaseGaodeMapSearchObj{
     private String ip;//ip
 
-    private IPGaodeMapSearchObj(String ip) {
+     IPGaodeMapSearchObj(String ip) {
         this.ip = ip;
+    }
+
+     IPGaodeMapSearchObj() {
+
     }
 
     @Override

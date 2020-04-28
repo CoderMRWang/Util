@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class WeatherGaodeInfoMapSearchObj extends BaseGaodeMapSearchObj{
     private EXTENSIONS_ENUM extensions;//气象类型,可选值：base/all,base:返回实况天气,all:返回预报天气
-    private WeatherGaodeInfoMapSearchObj() {
+     WeatherGaodeInfoMapSearchObj() {
     }
 
     @Override

@@ -23,7 +23,7 @@ public class GeoFenceMapSearchObj extends BaseGaodeMapSearchObj{
     private String alert_condition;//配置触发围栏所需动作,触发动作分号分割,enter;leave（进入、离开触发）
 
 
-    private GeoFenceMapSearchObj() {
+     GeoFenceMapSearchObj() {
     }
 
     @Override

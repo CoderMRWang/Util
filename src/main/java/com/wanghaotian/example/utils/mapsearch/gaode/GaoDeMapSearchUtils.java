@@ -20,5 +20,44 @@ public class GaoDeMapSearchUtils{
     private static final String RECTANGLE_TRAFFIC_HTTP_URL="https://restapi.amap.com/v3/traffic/status/rectangle?";//矩形交通提示
     private static final String GEO_FENCE_HTTP_URL="https://restapi.amap.com/v4/geofence/meta?";//地图栅栏
     private static final String TRAJECTORY_CORRECTION_HTTP_URL ="https://restapi.amap.com/v4/grasproad/driving?";//轨迹纠偏
+    public BatchGaodeMapSearchObj getBatchGaodeMapSearchObj(){
+        return new BatchGaodeMapSearchObj();
+    }
+    public ConvertCoordinatesGaodeMapSearchObj getConvertCoordinatesGaodeMapSearchObj(){
+        return new ConvertCoordinatesGaodeMapSearchObj();
+    }
 
+    public DirectionGaodeMapSearchObj getDirectionGaodeMapSearchObj(){
+        return new DirectionGaodeMapSearchObj();
+    }
+    public GeoFenceMapSearchObj getGeoFenceMapSearchObj(){
+        return new GeoFenceMapSearchObj();
+    }
+    public InputTipMapSearchObj getInputTipMapSearchObj(){
+        return new InputTipMapSearchObj();
+    }
+    public IPGaodeMapSearchObj getIPGaodeMapSearchObj(){
+        return new IPGaodeMapSearchObj();
+    }
+    public PlaceGaodeMapSearchObj getPlaceGaodeMapSearchObj(){
+        return new PlaceGaodeMapSearchObj();
+    }
+    public PoiGaodeMapSearchObj getPoiGaodeMapSearchObj(){
+        return new PoiGaodeMapSearchObj();
+    }
+    public RectangleGaodeTrafficMapSearchObj getRectangleGaodeTrafficMapSearchObj(){
+        return new RectangleGaodeTrafficMapSearchObj();
+    }
+    public ReverseGeoCodingMapSearchObj getReverseGeoCodingMapSearchObj(){
+        return new ReverseGeoCodingMapSearchObj();
+    }
+    public StaticGaodeMapSearchObj getStaticGaodeMapSearchObj(){
+        return new StaticGaodeMapSearchObj();
+    }
+    public TrajectoryCorrectionMapSearchObj getTrajectoryCorrectionMapSearchObj(){
+        return new TrajectoryCorrectionMapSearchObj();
+    }
+    public WeatherGaodeInfoMapSearchObj getWeatherGaodeInfoMapSearchObj(){
+        return new WeatherGaodeInfoMapSearchObj();
+    }
 }

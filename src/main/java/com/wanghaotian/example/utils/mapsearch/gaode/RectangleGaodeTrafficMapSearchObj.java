@@ -12,7 +12,7 @@ import lombok.Data;
 public class RectangleGaodeTrafficMapSearchObj extends BaseGaodeMapSearchObj{
     private String level;
     private String rectangle;
-    private RectangleGaodeTrafficMapSearchObj() {
+     RectangleGaodeTrafficMapSearchObj() {
     }
 
     @Override

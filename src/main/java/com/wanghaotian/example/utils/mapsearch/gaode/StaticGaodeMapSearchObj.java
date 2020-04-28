@@ -19,7 +19,7 @@ public class StaticGaodeMapSearchObj extends BaseGaodeMapSearchObj {
     private int paths;//折线,使用规则见paths详细说明，折线和多边形最大数4个,可选,无
     private TRAFFIC_ENUM traffic;//交通路况标识,底图是否展现实时路况。 可选值： 0，不展现；1，展现。可选0
 
-    private StaticGaodeMapSearchObj() {
+     StaticGaodeMapSearchObj() {
     }
 
     @Override

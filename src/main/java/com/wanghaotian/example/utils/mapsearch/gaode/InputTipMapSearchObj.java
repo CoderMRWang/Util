@@ -18,7 +18,7 @@ public class InputTipMapSearchObj extends BaseGaodeMapSearchObj {
     private String datatype;//返回的数据类型,返回公交线路数据类型,可选多种数据类型用“|”分隔，可选值：all-返回所有数据类型、poi-返回POI数据类型、bus-返回公交站点数据类型、busline-
     private boolean citylimit;//仅返回指定城市数据,可选值：true/false可选,false
 
-    private InputTipMapSearchObj() {
+     InputTipMapSearchObj() {
     }
 
     @Override

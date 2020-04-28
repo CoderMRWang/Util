@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 public class ConvertCoordinatesGaodeMapSearchObj extends BaseGaodeMapSearchObj{
-    private ConvertCoordinatesGaodeMapSearchObj() {
+     ConvertCoordinatesGaodeMapSearchObj() {
     }
 
     private String locations;//坐标点,经度和纬度用","分割，经度在前，纬度在后，经纬度小数点后不得超过6位。多个坐标对之间用”|”进行分隔最多支持40对坐标。,必填,无

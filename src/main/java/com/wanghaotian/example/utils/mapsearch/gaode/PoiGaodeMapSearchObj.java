@@ -19,7 +19,7 @@ public class PoiGaodeMapSearchObj extends BaseGaodeMapSearchObj{
     private int page;//当前页数,最大翻页数100
     private EXTENSIONS_ENUM extensions;//此项默认返回基本地址信息；取值为all返回地址信息、附近POI、道路以及道路交叉口信息。
 
-    private PoiGaodeMapSearchObj() {
+     PoiGaodeMapSearchObj() {
     }
 
     @Override

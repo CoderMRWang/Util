@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 public class BatchGaodeMapSearchObj extends BaseGaodeMapSearchObj{
-    private BatchGaodeMapSearchObj() {
+     BatchGaodeMapSearchObj() {
     }
 
     @Override
