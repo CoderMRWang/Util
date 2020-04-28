@@ -20,4 +20,5 @@ public class GaoDeMapSearchUtils{
     private static final String RECTANGLE_TRAFFIC_HTTP_URL="https://restapi.amap.com/v3/traffic/status/rectangle?";//矩形交通提示
     private static final String GEO_FENCE_HTTP_URL="https://restapi.amap.com/v4/geofence/meta?";//地图栅栏
     private static final String TRAJECTORY_CORRECTION_HTTP_URL ="https://restapi.amap.com/v4/grasproad/driving?";//轨迹纠偏
+
 }

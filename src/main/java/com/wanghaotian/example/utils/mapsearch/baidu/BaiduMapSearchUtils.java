@@ -7,6 +7,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Field;
 import java.util.*;
+import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.getRequestUrlPara;
 import static com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj.SEARCH_TYPE_ENUM.*;
 import static com.wanghaotian.example.utils.mapsearch.baidu.FieldCheckError.*;
 
@@ -217,28 +218,11 @@ public class BaiduMapSearchUtils  {
      */
     private static String setUpRequest(BaseBaiduMapSearchObj baseBaiduMapSearchObject, Class<? extends BaseBaiduMapSearchObj> clazz) {
         StringBuilder stringBuilder = setUpRequestPrefix(clazz);
-        ArrayList<Field> fieldsList = new ArrayList<>();
-        Field[] baseBaiduMapFields = clazz.getSuperclass().getDeclaredFields();
-        Field[] fields = clazz.getDeclaredFields();
-        fieldsList.addAll(Arrays.asList(fields));
-        fieldsList.addAll(Arrays.asList(baseBaiduMapFields));
-        for (Field field : fieldsList) {
-            field.setAccessible(true);
-            if (!FILTER.equals(field.getName()) && !SEARCH_TYPE.equals(field.getName())) {
-                try {
-                    if (ObjectUtils.isNotEmpty(field.get(baseBaiduMapSearchObject))) {
-                        stringBuilder.append(field.getName());
-                        stringBuilder.append("=");
-                        stringBuilder.append(field.get(baseBaiduMapSearchObject));
-                        stringBuilder.append("&");
-                    }
-                } catch (IllegalAccessException e) {
-                    log.info("方法{}发生异常:{}", "setUpRequest", e.getMessage());
-                }
-
-            }
-        }
-        return stringBuilder.substring(0, stringBuilder.lastIndexOf("&")).trim();
+        List<String> ignoreList=new ArrayList<>();
+        ignoreList.add(FILTER);
+        ignoreList.add(SEARCH_TYPE);
+        stringBuilder.append(getRequestUrlPara(baseBaiduMapSearchObject,clazz,ignoreList));
+        return stringBuilder.toString();
     }
 
     /**
