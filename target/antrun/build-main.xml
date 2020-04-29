@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <zip destfile="D:\JSP\Util\target/app.zip">
-    <zipfileset dir="D:\JSP\Util\target/docker"/>
-    <zipfileset includes="utils.jar" dir="D:\JSP\Util\target"/>
+  <zip destfile="D:\Users\HW\IdeaProjects\Util\target/app.zip">
+    <zipfileset dir="D:\Users\HW\IdeaProjects\Util\target/docker"/>
+    <zipfileset includes="utils.jar" dir="D:\Users\HW\IdeaProjects\Util\target"/>
   </zip>
 </target>
 </project>

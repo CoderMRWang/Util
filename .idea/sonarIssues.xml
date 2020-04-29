@@ -123,6 +123,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/object/Item.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/socket/ServerSocketTest.java">
           <value>
             <set />
@@ -179,6 +184,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/AsyncControllUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/ElasticsearchUtils.java">
           <value>
             <set />
           </value>
@@ -519,6 +529,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/wanghaotian/example/utils/mapsearch/gaode/place.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/test.log">
           <value>
             <set />
           </value>

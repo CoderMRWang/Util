@@ -5,10 +5,19 @@ import com.wanghaotian.example.utils.mapsearch.baidu.BaiduMapSearchUtils;
 import com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.baidu.SortNameDetail;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -17,8 +26,11 @@ import java.util.Map;
  * @date : Created in 2020/4/25
  * @modify By:
  */
+@State(Scope.Thread)
 public class MapSearchTest {
-    public static void main(String[] args) {
+    @Benchmark()
+    @OutputTimeUnit(TimeUnit.MILLISECONDS) // 输出结果的时间粒度为微秒
+    public void BaiduTest(){
         //百度测试
         BaiduMapSearchUtils baiduMapSearchUtils = MapSearchUtils.getBaiduMapSearchUtils();
         PlaceBaiduMapSearchObj placeBaiduMapSearchObject =BaiduMapSearchUtils.getPlaceBaiduMapSearchObject();
@@ -36,8 +48,11 @@ public class MapSearchTest {
         map.put(BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM.HOTEL, sortNameDetail);
         placeBaiduMapSearchObject.getFilter().add(map);
         BaiduMapSearchUtils.getResult(placeBaiduMapSearchObject, PlaceBaiduMapSearchObj.class);
+    }
+    public static void main(String[] args) throws RunnerException {
 
-
+        Options options= new OptionsBuilder().include(MapSearchTest.class.getSimpleName()).output("test.log").build();
+        new Runner(options).run();
 
     }
 }
