@@ -14,7 +14,6 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +46,7 @@ public class MapSearchTest {
         sortNameDetail.setChoice(choiceEnumMap);
         map.put(BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM.HOTEL, sortNameDetail);
         placeBaiduMapSearchObject.getFilter().add(map);
-        BaiduMapSearchUtils.getResult(placeBaiduMapSearchObject, PlaceBaiduMapSearchObj.class);
+        baiduMapSearchUtils.getResult(placeBaiduMapSearchObject, PlaceBaiduMapSearchObj.class);
     }
     public static void main(String[] args) throws RunnerException {
 

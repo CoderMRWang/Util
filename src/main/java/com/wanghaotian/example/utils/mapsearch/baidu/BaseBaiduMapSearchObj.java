@@ -1,5 +1,6 @@
 package com.wanghaotian.example.utils.mapsearch.baidu;
 
+import com.wanghaotian.example.utils.mapsearch.BaseMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.MapSearchUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,16 +21,16 @@ import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.OUT_PUT_ENU
  */
 @Data
 @NoArgsConstructor
-public class BaseBaiduMapSearchObj {
+public class BaseBaiduMapSearchObj implements BaseMapSearchObj {
     private SEARCH_TYPE_ENUM searchType;//查询类型
     private String query;//关键字,必选
     private String tag;//偏好,可选
     private MapSearchUtils.OUT_PUT_ENUM output;//选择XML或JSON
     private SCOPE_ENUM scope;//详细查询或基础查询
-    private final List<Map<INDUSTRY_TYPE_ENUM, SortNameDetail>> filter=new ArrayList<>();//过滤条件
+    private final List<Map<INDUSTRY_TYPE_ENUM, SortNameDetail>> filter = new ArrayList<>();//过滤条件
     private CODE_TYPE_ENUM coordType;//坐标类型
     private String retCoordtype;//
-    private int pageSize=40;//单次大小
+    private int pageSize = 40;//单次大小
     private int pageNum;//页码
     private String ak;//开发者秘钥
     private String sn;//开发者签名

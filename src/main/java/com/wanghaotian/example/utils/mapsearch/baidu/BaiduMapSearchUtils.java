@@ -1,12 +1,15 @@
 package com.wanghaotian.example.utils.mapsearch.baidu;
 
 import com.github.kevinsawicki.http.HttpRequest;
+import com.wanghaotian.example.utils.mapsearch.BaseMapSearchObj;
+import com.wanghaotian.example.utils.mapsearch.BaseMapSearchUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import java.lang.reflect.Field;
+
 import java.util.*;
+
 import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.getRequestUrlPara;
 import static com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj.SEARCH_TYPE_ENUM.*;
 import static com.wanghaotian.example.utils.mapsearch.baidu.FieldCheckError.*;
@@ -18,7 +21,7 @@ import static com.wanghaotian.example.utils.mapsearch.baidu.FieldCheckError.*;
  * @modify By:
  */
 @Slf4j
-public class BaiduMapSearchUtils  {
+public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     private static final String DETAILS_PREFIX = "http://api.map.baidu.com/place/v2/detail?";
     private static final String CIRCULAR_PREFIX = "http://api.map.baidu.com/place/v2/search?";
     private static final String PLACE_PREFIX = "http://api.map.baidu.com/place/v2/search?";
@@ -46,10 +49,11 @@ public class BaiduMapSearchUtils  {
         return new RectangularBaiduMapSearchObj(RECTANGULAR);
     }
 
-
-    public static String getResult(BaseBaiduMapSearchObj baseBaiduMapSearchObject, Class clazz) {
+    @Override
+    public String getResult(BaseMapSearchObj baseMapSearchObj, Class clazz) {
         StringBuilder errorString = new StringBuilder();
         String responce = null;
+        BaseBaiduMapSearchObj baseBaiduMapSearchObject = (BaseBaiduMapSearchObj) baseMapSearchObj;
         if (checkRequiredItems(baseBaiduMapSearchObject, errorString)) {
             String request = setUpRequest(baseBaiduMapSearchObject, clazz);
             if (CollectionUtils.isNotEmpty(baseBaiduMapSearchObject.getFilter())) {
@@ -72,7 +76,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 校验查询必填项
      */
-    private static boolean checkRequiredItems(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkRequiredItems(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         int okCount = 0;
         if (StringUtils.isBlank(baseBaiduMapSearchObject.getQuery())) {
             okCount -= 1;
@@ -98,7 +102,7 @@ public class BaiduMapSearchUtils  {
         return (okCount == 0) && checkSpicalItem(baseBaiduMapSearchObject, stringBuilder);
     }
 
-    private static boolean checkSpicalItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkSpicalItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         boolean result = false;
         switch (baseBaiduMapSearchObject.getSearchType()) {
             case PLACE:
@@ -122,7 +126,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 校验地点查询
      */
-    private static boolean checkPlaceItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkPlaceItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         int okSize = 0;
         PlaceBaiduMapSearchObj placeBaiduMapSearchObject = PlaceBaiduMapSearchObj.class.cast(baseBaiduMapSearchObject);
         if (StringUtils.isBlank(placeBaiduMapSearchObject.getRegion())) {
@@ -135,7 +139,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 校验圆形查询
      */
-    private static boolean checkCircularItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkCircularItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         int okSize = 0;
         CircularBaiduMapSearchObj circularBaiduMapSearchObject = CircularBaiduMapSearchObj.class.cast(baseBaiduMapSearchObject);
         if (StringUtils.isBlank(circularBaiduMapSearchObject.getLocation())) {
@@ -148,7 +152,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 校验矩形查询
      */
-    private static boolean checkRectangleItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkRectangleItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         RectangularBaiduMapSearchObj rectangularMapSearchObject = RectangularBaiduMapSearchObj.class.cast(baseBaiduMapSearchObject);
         int okSize = 0;
         if (StringUtils.isBlank(rectangularMapSearchObject.getBounds())) {
@@ -161,7 +165,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 校验细节查询
      */
-    private static boolean checkDetailsItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkDetailsItem(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         DetailsBaiduMapSearchObj detailsBaiduMapSearchObject = DetailsBaiduMapSearchObj.class.cast(baseBaiduMapSearchObject);
         int okSize = 0;
         if (StringUtils.isBlank(detailsBaiduMapSearchObject.getUid())) {
@@ -179,7 +183,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 校验过滤条件是否正确能否拼接
      */
-    private static boolean checkFilter(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkFilter(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
         List<Map<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail>> filterList = baseBaiduMapSearchObject.getFilter();
         for (Map<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail> map : filterList) {
             Iterator<Map.Entry<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail>> mapIt = map.entrySet().iterator();
@@ -216,19 +220,19 @@ public class BaiduMapSearchUtils  {
     /**
      * 组装request请求体
      */
-    private static String setUpRequest(BaseBaiduMapSearchObj baseBaiduMapSearchObject, Class<? extends BaseBaiduMapSearchObj> clazz) {
+    private String setUpRequest(BaseBaiduMapSearchObj baseBaiduMapSearchObject, Class<? extends BaseBaiduMapSearchObj> clazz) {
         StringBuilder stringBuilder = setUpRequestPrefix(clazz);
-        List<String> ignoreList=new ArrayList<>();
+        List<String> ignoreList = new ArrayList<>();
         ignoreList.add(FILTER);
         ignoreList.add(SEARCH_TYPE);
-        stringBuilder.append(getRequestUrlPara(baseBaiduMapSearchObject,clazz,ignoreList));
+        stringBuilder.append(getRequestUrlPara(baseBaiduMapSearchObject, clazz, ignoreList));
         return stringBuilder.toString();
     }
 
     /**
      * 组装请求前缀
      */
-    private static StringBuilder setUpRequestPrefix(Class clazz) {
+    private StringBuilder setUpRequestPrefix(Class clazz) {
         StringBuilder stringBuilder = new StringBuilder();
         switch (clazz.getName()) {
             case DETAILS_BAIDU_SEARCHOBJECT_NAME:
@@ -250,7 +254,7 @@ public class BaiduMapSearchUtils  {
     /**
      * 进行请求
      */
-    private static String doRequest(String requestUri) {
+    private String doRequest(String requestUri) {
         return HttpRequest.get(requestUri).body();
     }
 }

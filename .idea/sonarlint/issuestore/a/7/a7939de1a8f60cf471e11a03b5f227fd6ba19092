@@ -1,0 +1,5 @@
+
+¤squid:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÂêÐüÿÿÿÿÿ8ö©¸«œ.
+‰squid:S1488"kImmediately return this expression instead of assigning it to the temporary variable "defaultPooledObject".(ó í÷8ö©¸«œ.
+ssquid:UselessImportCheck"HRemove this unused import 'java.util.concurrent.atomic.AtomicReference'.(×‡µó8ö©¸«œ.
+Ÿsquid:S1186""€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(˜´íÎ8ö©¸«œ.

@@ -3,6 +3,7 @@ package com.wanghaotian.example.utils.mapsearch.baidu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.Map;
 
 /**

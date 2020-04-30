@@ -1,0 +1,21 @@
+
+gsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(‡½óüÿÿÿÿ
+gsquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+O
+squid:S106"9Replace this use of System.out or System.err by a logger.(è‹ïû
+T
+squid:S106("9Replace this use of System.out or System.err by a logger.(„ñî™þÿÿÿÿ
+3squid:S2438S""thread" is a "Thread".(Ó‘›óüÿÿÿÿ
+Hsquid:S1481",Remove this unused "thread1" local variable.(°£öúÿÿÿÿ
+Csquid:S1481$",Remove this unused "thread2" local variable.(ìÞ€Ì
+Lsquid:S1481`"0Remove this unused "stampedLock" local variable.(ŸíœÒùÿÿÿÿ
+isquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Åã³
+]squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+]squid:S2142*"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+]squid:S2142M"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+Csquid:S1602E",Remove useless curly braces around statement(Ð”°
+`squid:S2147O"DCombine this catch with the one at line 77, which has the same body.(†«”Ïüÿÿÿÿ
+?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148+"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148N"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148P"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
