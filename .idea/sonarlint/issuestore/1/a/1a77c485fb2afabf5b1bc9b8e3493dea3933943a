@@ -1,18 +1,18 @@
 
-|squid:UselessImportCheck"NRemove this unused import 'org.elasticsearch.common.xcontent.XContentBuilder'.(Ê¯µÓøÿÿÿÿ8´ñ·«œ.
-²%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(êŞ„²şÿÿÿÿ8´ñ·«œ.
-Msquid:S1481"1Remove this unused "criteriaList" local variable.(õ°´Û8´ñ·«œ.
-squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘8´ñ·«œ.
-tsquid:UselessImportCheck"KRemove this unused import 'org.elasticsearch.common.xcontent.XContentType'.(‡¦œ¯8´ñ·«œ.
-ysquid:UselessImportCheck"QRemove this unused import 'org.elasticsearch.search.builder.SearchSourceBuilder'.(‘ş¹j8´ñ·«œ.
-Xsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8´ñ·«œ.
-psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹á©­øÿÿÿÿ8´ñ·«œ.
-{squid:UselessImportCheck"MRemove this unused import 'org.elasticsearch.common.xcontent.XContentParser'.(ß®âıÿÿÿÿ8´ñ·«œ.
 T
 squid:S106"9Replace this use of System.out or System.err by a logger.(‹şõ‰8´ñ·«œ.
-ssquid:UselessImportCheck"JRemove this unused import 'org.elasticsearch.action.search.SearchRequest'.(ßÄƒ–8´ñ·«œ.
+psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹á©­øÿÿÿÿ8´ñ·«œ.
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘8´ñ·«œ.
+Msquid:S1481"1Remove this unused "criteriaList" local variable.(õ°´Û8´ñ·«œ.
+|squid:UselessImportCheck"NRemove this unused import 'org.elasticsearch.common.xcontent.XContentBuilder'.(Ê¯µÓøÿÿÿÿ8´ñ·«œ.
 xsquid:UselessImportCheck"JRemove this unused import 'org.elasticsearch.common.bytes.BytesReference'.(ïğ®±ıÿÿÿÿ8´ñ·«œ.
-fsquid:CallToDeprecatedMethod"4Remove this use of "isAccessible"; it is deprecated.(ù¬æìüÿÿÿÿ8ÁúÛœ.
-¼%squid:RedundantThrowsDeclarationCheck"€Remove the declaration of thrown exception 'java.util.concurrent.ExecutionException', as it cannot be thrown from method's body.(êŞ„²şÿÿÿÿ8´ñ·«œ.
+²%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(êŞ„²şÿÿÿÿ8´ñ·«œ.
+Xsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8´ñ·«œ.
+tsquid:UselessImportCheck"KRemove this unused import 'org.elasticsearch.common.xcontent.XContentType'.(‡¦œ¯8´ñ·«œ.
 ^squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8´ñ·«œ.
+{squid:UselessImportCheck"MRemove this unused import 'org.elasticsearch.common.xcontent.XContentParser'.(ß®âıÿÿÿÿ8´ñ·«œ.
+¼%squid:RedundantThrowsDeclarationCheck"€Remove the declaration of thrown exception 'java.util.concurrent.ExecutionException', as it cannot be thrown from method's body.(êŞ„²şÿÿÿÿ8´ñ·«œ.
+fsquid:CallToDeprecatedMethod"4Remove this use of "isAccessible"; it is deprecated.(ù¬æìüÿÿÿÿ8ÁúÛœ.
 |squid:UselessImportCheck"NRemove this unused import 'org.elasticsearch.common.xcontent.XContentFactory'.(Ì…”ÿÿÿÿÿ8´ñ·«œ.
+ssquid:UselessImportCheck"JRemove this unused import 'org.elasticsearch.action.search.SearchRequest'.(ßÄƒ–8´ñ·«œ.
+ysquid:UselessImportCheck"QRemove this unused import 'org.elasticsearch.search.builder.SearchSourceBuilder'.(‘ş¹j8´ñ·«œ.

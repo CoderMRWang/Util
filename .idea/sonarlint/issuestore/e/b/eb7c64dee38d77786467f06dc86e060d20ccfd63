@@ -1,5 +1,2 @@
 
-Ysquid:S1481"8Remove this unused "baiduMapSearchUtils" local variable.(Á²ìşÿÿÿÿ8éÄ€¬œ.
 ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜¢Õ°8éÄ€¬œ.
-@squid:S1640"Convert this Map to an EnumMap.(Şœ·Ôøÿÿÿÿ8éÄ€¬œ.
-@squid:S1640"Convert this Map to an EnumMap.(»ºåİùÿÿÿÿ8éÄ€¬œ.

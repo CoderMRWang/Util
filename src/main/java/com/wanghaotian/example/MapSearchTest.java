@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class MapSearchTest {
     @Benchmark()
     @OutputTimeUnit(TimeUnit.MILLISECONDS) // 输出结果的时间粒度为微秒
-    public void BaiduTest(){
+    public void baiduTest(){
         //百度测试
         BaiduMapSearchUtils baiduMapSearchUtils = MapSearchUtils.getBaiduMapSearchUtils();
         PlaceBaiduMapSearchObj placeBaiduMapSearchObject =BaiduMapSearchUtils.getPlaceBaiduMapSearchObject();
@@ -50,8 +50,10 @@ public class MapSearchTest {
     }
     public static void main(String[] args) throws RunnerException {
 
-        Options options= new OptionsBuilder().include(MapSearchTest.class.getSimpleName()).output("test.log").build();
-        new Runner(options).run();
+//        Options options= new OptionsBuilder().include(MapSearchTest.class.getSimpleName()).output("test.log").build();
+//        new Runner(options).run();
+        MapSearchTest mapSearchTest=new MapSearchTest();
+        mapSearchTest.baiduTest();
 
     }
 }

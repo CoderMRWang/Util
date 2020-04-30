@@ -3,6 +3,7 @@ package com.wanghaotian.example.utils.mapsearch.gaode;
 import com.wanghaotian.example.utils.mapsearch.BaseMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.BaseMapSearchUtils;
 import com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj;
+import org.springframework.util.Assert;
 
 /**
  * @author : wanghaotian
@@ -71,6 +72,7 @@ public class GaoDeMapSearchUtils implements BaseMapSearchUtils {
     @Override
     public String getResult(BaseMapSearchObj baseMapSearchObj, Class clazz) {
         BaseBaiduMapSearchObj baseBaiduMapSearchObj = (BaseBaiduMapSearchObj) baseMapSearchObj;
+        Assert.isTrue(clazz.getSuperclass().equals(BaseGaodeMapSearchObj.class),"Class must extends BaseBaiduMapSearchObj");
         return null;
     }
 }

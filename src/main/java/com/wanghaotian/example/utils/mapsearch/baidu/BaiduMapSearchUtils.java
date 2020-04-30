@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Assert;
 
 import java.util.*;
 
@@ -53,6 +54,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     public String getResult(BaseMapSearchObj baseMapSearchObj, Class clazz) {
         StringBuilder errorString = new StringBuilder();
         String responce = null;
+        Assert.isTrue(clazz.getSuperclass().equals(BaseBaiduMapSearchObj.class),"Class must extends BaseMapSearchObj");
         BaseBaiduMapSearchObj baseBaiduMapSearchObject = (BaseBaiduMapSearchObj) baseMapSearchObj;
         if (checkRequiredItems(baseBaiduMapSearchObject, errorString)) {
             String request = setUpRequest(baseBaiduMapSearchObject, clazz);
@@ -68,7 +70,6 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
         } else {
             log.info("{}", errorString);
         }
-
         return responce;
     }
 
@@ -86,17 +87,13 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
             okCount -= 1;
             stringBuilder.append(FIELD_AK_NULL);
         }
-        if (StringUtils.isNotBlank(baseBaiduMapSearchObject.getSn())) {
-            if (ObjectUtils.isEmpty(baseBaiduMapSearchObject.getTimestamp())) {
-                okCount -= 1;
-                stringBuilder.append(FIELD_TIMESTAMP_NULL);
-            }
+        if (StringUtils.isNotBlank(baseBaiduMapSearchObject.getSn()) && ObjectUtils.isEmpty(baseBaiduMapSearchObject.getTimestamp())) {
+            okCount -= 1;
+            stringBuilder.append(FIELD_TIMESTAMP_NULL);
         }
-        if (CollectionUtils.isNotEmpty(baseBaiduMapSearchObject.getFilter())) {
-            if (!BaseBaiduMapSearchObj.SCOPE_ENUM.DETILS.equals(baseBaiduMapSearchObject.getScope())) {
-                okCount -= 1;
-                stringBuilder.append(FIELD_SCOPE_ERROE);
-            }
+        if (CollectionUtils.isNotEmpty(baseBaiduMapSearchObject.getFilter()) && !BaseBaiduMapSearchObj.SCOPE_ENUM.DETILS.equals(baseBaiduMapSearchObject.getScope())){
+            okCount -= 1;
+            stringBuilder.append(FIELD_SCOPE_ERROE);
         }
 
         return (okCount == 0) && checkSpicalItem(baseBaiduMapSearchObject, stringBuilder);
@@ -232,7 +229,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     /**
      * 组装请求前缀
      */
-    private StringBuilder setUpRequestPrefix(Class clazz) {
+    private StringBuilder setUpRequestPrefix(Class<? extends BaseBaiduMapSearchObj> clazz) {
         StringBuilder stringBuilder = new StringBuilder();
         switch (clazz.getName()) {
             case DETAILS_BAIDU_SEARCHOBJECT_NAME:
@@ -246,6 +243,8 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
                 break;
             case RECTANGULAR_BAIDU_SEARCHOBJECT_NAME:
                 stringBuilder.append(RECTANGULAR_PREFIX);
+                break;
+            default:
                 break;
         }
         return stringBuilder;

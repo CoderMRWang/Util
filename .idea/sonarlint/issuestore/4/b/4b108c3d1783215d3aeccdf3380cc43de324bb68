@@ -1,15 +1,15 @@
 
-Osquid:S1068"3Remove this unused "STATIC_HTTP_URL" private field.(‰•Ôıÿÿÿÿ
-Usquid:S1068
-">Remove this unused "REVERSE_GEOCODING_HTTP_URL" private field.(ŸÈ°é
-Fsquid:S1068"/Remove this unused "IP_HTTP_URL" private field.(±·šĞ
-Nsquid:S1068"2Remove this unused "PLACE_HTTP_URL" private field.(ËİÎûùÿÿÿÿ
-Ysquid:S1068"BRemove this unused "TRAJECTORY_CORRECTION_HTTP_URL" private field.(î§¯€
-Rsquid:S1068"6Remove this unused "INPUT_TIP_HTTP_URL" private field.(âƒàÿüÿÿÿÿ
-Fsquid:S1068"0Remove this unused "POI_HTTP_URL" private field.(ÀÎ’:
-Hsquid:S1068"2Remove this unused "BATCH_HTTP_URL" private field.(œ¬Ã\
-Hsquid:S1068"1Remove this unused "DIRECTION_URL" private field.(­™ªÕ
-Usquid:S1068"9Remove this unused "WEATHER_INFO_HTTP_URL" private field.(½Ê‘ ıÿÿÿÿ
-Rsquid:S1068"6Remove this unused "GEO_FENCE_HTTP_URL" private field.(²îÖâÿÿÿÿÿ
-Psquid:S1068"4Remove this unused "CONVERT_HTTP_URL" private field.(ä©üÿÿÿÿ
-Usquid:S1068">Remove this unused "RECTANGLE_TRAFFIC_HTTP_URL" private field.(Æ»ëå
+Lsquid:S1068"2Remove this unused "PLACE_HTTP_URL" private field.(ËİÎûùÿÿÿÿ
+Fsquid:S1068"1Remove this unused "DIRECTION_URL" private field.(­™ªÕ
+Psquid:S1068"6Remove this unused "GEO_FENCE_HTTP_URL" private field.(²îÖâÿÿÿÿÿ
+Wsquid:S1068"BRemove this unused "TRAJECTORY_CORRECTION_HTTP_URL" private field.(î§¯€
+Nsquid:S1068"4Remove this unused "CONVERT_HTTP_URL" private field.(ä©üÿÿÿÿ
+Ssquid:S1068">Remove this unused "RECTANGLE_TRAFFIC_HTTP_URL" private field.(Æ»ëå
+Fsquid:S1068"2Remove this unused "BATCH_HTTP_URL" private field.(œ¬Ã\
+Msquid:S1068"3Remove this unused "STATIC_HTTP_URL" private field.(‰•Ôıÿÿÿÿ
+Ssquid:S1068"9Remove this unused "WEATHER_INFO_HTTP_URL" private field.(½Ê‘ ıÿÿÿÿ
+Ssquid:S1068">Remove this unused "REVERSE_GEOCODING_HTTP_URL" private field.(ŸÈ°é
+Dsquid:S1068"0Remove this unused "POI_HTTP_URL" private field.(ÀÎ’:
+Vsquid:S1481":Remove this unused "baseBaiduMapSearchObj" local variable.(½¦ÂŸ8Ÿ„İœ.
+Psquid:S1068"6Remove this unused "INPUT_TIP_HTTP_URL" private field.(âƒàÿüÿÿÿÿ
+Dsquid:S1068"/Remove this unused "IP_HTTP_URL" private field.(±·šĞ
