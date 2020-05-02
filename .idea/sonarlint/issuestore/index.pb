@@ -125,3 +125,5 @@ dtarget/generated-sources/annotations/com/wanghaotian/example/generated/MapSearc
 dtarget/generated-sources/annotations/com/wanghaotian/example/generated/MapSearchTest_jmhType_B2.java,5\7\573ad76b4e9c0eecde8aad0f4dd5b7e5e72505be
 ”
 dtarget/generated-sources/annotations/com/wanghaotian/example/generated/MapSearchTest_jmhType_B3.java,e\d\ed7bdff1f071986a74140578d1d7abd3f8d4ebf3
+Š
+Zsrc/main/java/com/wanghaotian/example/utils/mapsearch/baidu/CircularBaiduMapSearchObj.java,a\4\a4a2bfb5ab8da943403a8233d0a2b7997c67f488

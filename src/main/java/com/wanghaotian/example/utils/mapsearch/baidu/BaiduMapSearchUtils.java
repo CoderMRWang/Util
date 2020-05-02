@@ -9,6 +9,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
+import javax.annotation.Nullable;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.getRequestUrlPara;
@@ -51,21 +53,21 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     }
 
     @Override
-    public String getResult(BaseMapSearchObj baseMapSearchObj, Class clazz) {
+    public String getResult(BaseMapSearchObj baseMapSearchObj, @NotNull Class clazz) {
         StringBuilder errorString = new StringBuilder();
         String responce = null;
-        Assert.isTrue(clazz.getSuperclass().equals(BaseBaiduMapSearchObj.class),"Class must extends BaseMapSearchObj");
+        Assert.isTrue(BaseBaiduMapSearchObj.class.equals(clazz.getSuperclass()), "Class must extends BaseMapSearchObj");
         BaseBaiduMapSearchObj baseBaiduMapSearchObject = (BaseBaiduMapSearchObj) baseMapSearchObj;
         if (checkRequiredItems(baseBaiduMapSearchObject, errorString)) {
-            String request = setUpRequest(baseBaiduMapSearchObject, clazz);
+            StringBuilder request = setUpRequest(baseBaiduMapSearchObject, clazz);
             if (CollectionUtils.isNotEmpty(baseBaiduMapSearchObject.getFilter())) {
-                StringBuilder requestBuilder = new StringBuilder();
-                checkFilter(baseBaiduMapSearchObject, requestBuilder);
-                log.info("after filter string {}", requestBuilder.toString());
-                request += "&" + requestBuilder;
+                StringBuilder filterBuilder = new StringBuilder();
+                checkFilter(baseBaiduMapSearchObject, filterBuilder);
+                log.info("after filter string {}", filterBuilder.toString());
+                request.append("&" + filterBuilder);
             }
             log.info("{}", request);
-            responce = doRequest(request);
+            responce = doRequest(request.toString());
             log.info("返回的结果:{}", responce);
         } else {
             log.info("{}", errorString);
@@ -180,7 +182,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     /**
      * 校验过滤条件是否正确能否拼接
      */
-    private boolean checkFilter(BaseBaiduMapSearchObj baseBaiduMapSearchObject, StringBuilder stringBuilder) {
+    private boolean checkFilter(BaseBaiduMapSearchObj baseBaiduMapSearchObject, @Nullable StringBuilder stringBuilder) {
         List<Map<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail>> filterList = baseBaiduMapSearchObject.getFilter();
         for (Map<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail> map : filterList) {
             Iterator<Map.Entry<BaseBaiduMapSearchObj.INDUSTRY_TYPE_ENUM, SortNameDetail>> mapIt = map.entrySet().iterator();
@@ -217,13 +219,13 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     /**
      * 组装request请求体
      */
-    private String setUpRequest(BaseBaiduMapSearchObj baseBaiduMapSearchObject, Class<? extends BaseBaiduMapSearchObj> clazz) {
+    private StringBuilder setUpRequest(BaseBaiduMapSearchObj baseBaiduMapSearchObject, Class<? extends BaseBaiduMapSearchObj> clazz) {
         StringBuilder stringBuilder = setUpRequestPrefix(clazz);
         List<String> ignoreList = new ArrayList<>();
         ignoreList.add(FILTER);
         ignoreList.add(SEARCH_TYPE);
         stringBuilder.append(getRequestUrlPara(baseBaiduMapSearchObject, clazz, ignoreList));
-        return stringBuilder.toString();
+        return stringBuilder;
     }
 
     /**

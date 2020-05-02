@@ -1,2 +1,8 @@
 
-ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜¢Õ°8éÄ€¬œ.
+A
+java:S1640)"Convert this Map to an EnumMap.(Şœ·Ôøÿÿÿÿ8’Ïö›.
+A
+java:S1640,"Convert this Map to an EnumMap.(»ºåİùÿÿÿÿ8’Ïö›.
+œ
+java:S11303"Remove the declaration of thrown exception 'org.openjdk.jmh.runner.RunnerException', as it cannot be thrown from method's body.(¬„Ëõ8’Ïö›.
+]	java:S1255"<This block of commented-out lines of code should be removed.(äú¶¶ÿÿÿÿÿ8’Ïö›.

@@ -72,7 +72,7 @@ public class GaoDeMapSearchUtils implements BaseMapSearchUtils {
     @Override
     public String getResult(BaseMapSearchObj baseMapSearchObj, Class clazz) {
         BaseBaiduMapSearchObj baseBaiduMapSearchObj = (BaseBaiduMapSearchObj) baseMapSearchObj;
-        Assert.isTrue(clazz.getSuperclass().equals(BaseGaodeMapSearchObj.class),"Class must extends BaseBaiduMapSearchObj");
+        Assert.isTrue(BaseGaodeMapSearchObj.class.equals(clazz.getSuperclass()),"Class must extends BaseBaiduMapSearchObj");
         return null;
     }
 }

@@ -1,15 +1,29 @@
 
-Lsquid:S1068"2Remove this unused "PLACE_HTTP_URL" private field.(ֻÝ־ûשÿÿÿÿ
-Fsquid:S1068"1Remove this unused "DIRECTION_URL" private field.(­™×ױ
-Psquid:S1068"6Remove this unused "GEO_FENCE_HTTP_URL" private field.(²מײגÿÿÿÿÿ
-Wsquid:S1068"BRemove this unused "TRAJECTORY_CORRECTION_HTTP_URL" private field.(מ§¯€
-Nsquid:S1068"4Remove this unused "CONVERT_HTTP_URL" private field.(ה©üÿÿÿÿ
-Ssquid:S1068">Remove this unused "RECTANGLE_TRAFFIC_HTTP_URL" private field.(ֶ»כו
-Fsquid:S1068"2Remove this unused "BATCH_HTTP_URL" private field.(¬ֳ\
-Msquid:S1068"3Remove this unused "STATIC_HTTP_URL" private field.(‰•װ‎ÿÿÿÿ
-Ssquid:S1068"9Remove this unused "WEATHER_INFO_HTTP_URL" private field.(½Ê‘ ‎ÿÿÿÿ
-Ssquid:S1068">Remove this unused "REVERSE_GEOCODING_HTTP_URL" private field.(ָ°י
-Dsquid:S1068"0Remove this unused "POI_HTTP_URL" private field.(ְ־’:
-Vsquid:S1481":Remove this unused "baseBaiduMapSearchObj" local variable.(½¦ֲ8„Ý.
-Psquid:S1068"6Remove this unused "INPUT_TIP_HTTP_URL" private field.(גƒאÿüÿÿÿÿ
-Dsquid:S1068"/Remove this unused "IP_HTTP_URL" private field.(±·׀
+W
+java:S1481J":Remove this unused "baseBaiduMapSearchObj" local variable.(½¦ֲ8’ֿצ›.
+[
+java:S1068">Remove this unused "REVERSE_GEOCODING_HTTP_URL" private field.(ָ°י8’ֿצ›.
+N
+java:S1068"1Remove this unused "DIRECTION_URL" private field.(­™×ױ8’ֿצ›.
+T
+java:S1068"2Remove this unused "PLACE_HTTP_URL" private field.(ֻÝ־ûשÿÿÿÿ8’ֿצ›.
+L
+java:S1068"0Remove this unused "POI_HTTP_URL" private field.(ְ־’:8’ֿצ›.
+L
+java:S1068"/Remove this unused "IP_HTTP_URL" private field.(±·׀8’ֿצ›.
+N
+java:S1068"2Remove this unused "BATCH_HTTP_URL" private field.(¬ֳ\8’ֿצ›.
+U
+java:S1068"3Remove this unused "STATIC_HTTP_URL" private field.(‰•װ‎ÿÿÿÿ8’ֿצ›.
+V
+java:S1068"4Remove this unused "CONVERT_HTTP_URL" private field.(ה©üÿÿÿÿ8’ֿצ›.
+[
+java:S1068"9Remove this unused "WEATHER_INFO_HTTP_URL" private field.(½Ê‘ ‎ÿÿÿÿ8’ֿצ›.
+X
+java:S1068"6Remove this unused "INPUT_TIP_HTTP_URL" private field.(גƒאÿüÿÿÿÿ8’ֿצ›.
+[
+java:S1068">Remove this unused "RECTANGLE_TRAFFIC_HTTP_URL" private field.(ֶ»כו8’ֿצ›.
+X
+java:S1068"6Remove this unused "GEO_FENCE_HTTP_URL" private field.(²מײגÿÿÿÿÿ8’ֿצ›.
+_
+java:S1068"BRemove this unused "TRAJECTORY_CORRECTION_HTTP_URL" private field.(מ§¯€8’ֿצ›.
