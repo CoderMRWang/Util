@@ -5,18 +5,18 @@ import com.wanghaotian.example.utils.mapsearch.baidu.BaiduMapSearchUtils;
 import com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj;
 import com.wanghaotian.example.utils.mapsearch.baidu.SortNameDetail;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
+import org.openjdk.jmh.runner.options.TimeValue;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import static org.openjdk.jmh.annotations.Mode.Throughput;
 
 
 /**
@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Thread)
 public class MapSearchTest {
     @Benchmark()
+    @BenchmarkMode(Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS) // 输出结果的时间粒度为微秒
     public void baiduTest(){
         //百度测试
@@ -50,10 +51,12 @@ public class MapSearchTest {
     }
     public static void main(String[] args) throws RunnerException {
 
-//        Options options= new OptionsBuilder().include(MapSearchTest.class.getSimpleName()).output("test.log").build();
-//        new Runner(options).run();
-        MapSearchTest mapSearchTest=new MapSearchTest();
-        mapSearchTest.baiduTest();
+        Options options= new OptionsBuilder().include(MapSearchTest.class.getSimpleName())
+                .forks(2).threads(4).measurementIterations(1).timeout(TimeValue.seconds(1))
+                .output("test.log").build();
+        new Runner(options).run();
+//        MapSearchTest mapSearchTest=new MapSearchTest();
+//        mapSearchTest.baiduTest();
 
     }
 }

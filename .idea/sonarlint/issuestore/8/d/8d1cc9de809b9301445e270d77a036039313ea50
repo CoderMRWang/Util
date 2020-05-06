@@ -1,13 +1,18 @@
 
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è±‘Ì
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì­”°
-^squid:S1192"IDefine a constant instead of duplicating this literal "distance" 3 times.(¶İµ½
-dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ïıÖ
-Zsquid:S1192"FDefine a constant instead of duplicating this literal "price" 3 times.(ÓÙ®
-bsquid:S1192"HDefine a constant instead of duplicating this literal "default" 3 times.(Ğğóüÿÿÿÿ
-Csquid:S1172".Remove this unused method parameter "meaning".(è±‘Ì
-psquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÑçÓÇ
-nsquid:S00116"SRename this field "type_key" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´£ÀÜùÿÿÿÿ
-Dsquid:S1172"/Remove this unused method parameter "meanning".(ì­”°
-nsquid:S00116"SRename this field "type_key" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´£ÀÜùÿÿÿÿ
-dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ïıÖ
+j	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ïıÖ8ëôœ.
+w	java:S115«"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÑçÓÇ8ëôœ.
+m	java:S117r"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è±‘Ì8ëôœ.
+j
+java:S1192^"HDefine a constant instead of duplicating this literal "default" 3 times.(Ğğóüÿÿÿÿ8ëôœ.
+t	java:S116G"SRename this field "type_key" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´£ÀÜùÿÿÿÿ8ëôœ.
+L
+java:S1172I"/Remove this unused method parameter "meanning".(ì­”°8ëôœ.
+f
+java:S1192c"IDefine a constant instead of duplicating this literal "distance" 3 times.(¶İµ½8ëôœ.
+m	java:S117I"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì­”°8ëôœ.
+j	java:S100{"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ïıÖ8ëôœ.
+t	java:S116p"SRename this field "type_key" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´£ÀÜùÿÿÿÿ8ëôœ.
+b
+java:S1192_"FDefine a constant instead of duplicating this literal "price" 3 times.(ÓÙ®8ëôœ.
+K
+java:S1172r".Remove this unused method parameter "meaning".(è±‘Ì8ëôœ.

@@ -1,5 +1,5 @@
 
+p
+java:S3776¹"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(´ŠÕË8•çœ.
 i
 java:S2259Ä"KA "NullPointerException" could be thrown; "stringBuilder" is nullable here.(’½–¥8’Ïö›.
-p
-java:S3776¹"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(´ŠÕË8’Ïö›.
