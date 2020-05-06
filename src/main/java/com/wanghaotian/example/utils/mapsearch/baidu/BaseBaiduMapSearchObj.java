@@ -29,7 +29,7 @@ public class BaseBaiduMapSearchObj implements BaseMapSearchObj {
     private SCOPE_ENUM scope;//详细查询或基础查询
     private final List<Map<INDUSTRY_TYPE_ENUM, SortNameDetail>> filter = new ArrayList<>();//过滤条件
     private CODE_TYPE_ENUM coordType;//坐标类型
-    private String retCoordtype;//
+    private String retCoordType;//
     private int pageSize = 40;//单次大小
     private int pageNum;//页码
     private String ak;//开发者秘钥
