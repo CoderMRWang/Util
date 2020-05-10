@@ -10,7 +10,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import javax.annotation.Nullable;
+import javax.imageio.stream.FileImageOutputStream;
 import javax.validation.constraints.NotNull;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.getRequestUrlPara;
@@ -35,6 +40,11 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     private static final String CIRCULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.CircularBaiduMapSearchObj";
     private static final String PLACE_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj";
     private static final String RECTANGULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.RectangularBaiduMapSearchObj";
+    private static final String[] REQUESTS_URL = {"http://maponline0.bdimg.com",
+            "http://maponline1.bdimg.com",
+            "http://maponline2.bdimg.com",
+            "http://maponline3.bdimg.com"};
+    private static final String WEB_RESOURCE = "./src/main/resources/static/js/tiles";
 
     public static PlaceBaiduMapSearchObj getPlaceBaiduMapSearchObject() {
         return new PlaceBaiduMapSearchObj(PLACE);
@@ -258,4 +268,59 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     private String doRequest(String requestUri) {
         return HttpRequest.get(requestUri).body();
     }
+
+
+    public static void getStaticResource(final int x, final int y, final int z) {
+        for (String url : REQUESTS_URL) {
+            String s = url + "/tile/?qt=vtile&x=" + x + "&y=" + y + "&z=" + z + "&styles=pl&scaler=2&from=jsapi2_0";
+            log.info("请求地址:{}", s);
+            HttpRequest.keepAlive(true);
+            HttpRequest httpRequest = HttpRequest.get(s);
+            InputStream fileString = httpRequest.stream();
+            byte[] bytes = null;
+            try {
+                int length = fileString.available();
+                if (length < 100) {
+                    continue;
+                }
+                bytes = new byte[length];
+                fileString.read(bytes);
+                if (isHTML(bytes)) {
+                    continue;
+                } else {
+                    log.info("不是html!");
+                }
+            } catch (IOException e) {
+                log.info("{}", e);
+            }
+            File imageFile = new File(WEB_RESOURCE+File.separatorChar + z +File.separatorChar + x + File.separatorChar + y + ".jpg");
+            try {
+                String fileName=imageFile.getAbsolutePath();
+                String dir=fileName.substring(0,fileName.lastIndexOf(File.separatorChar));
+                File dirFile=new File(dir);
+                dirFile.mkdirs();
+                imageFile.createNewFile();
+            } catch (IOException e) {
+                log.info("创建文件出错{}",e);
+            }
+            try (
+                FileImageOutputStream outputStream = new FileImageOutputStream(imageFile);) {
+                outputStream.write(bytes);
+            } catch (IOException e) {
+                log.info("IO出现异常:{}", e);
+            } finally {
+
+                log.info("完成");
+            }
+            break;
+        }
+    }
+
+    private static boolean isHTML(byte[] bytes) {
+        String reg = "<html>";
+        String result = new String(bytes, StandardCharsets.UTF_8);
+        return result.startsWith(reg);
+    }
+
+
 }

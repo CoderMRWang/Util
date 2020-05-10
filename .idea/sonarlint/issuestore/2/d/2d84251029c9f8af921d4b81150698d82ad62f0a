@@ -1,0 +1,6 @@
+
+Osquid:S1118":Add a private constructor to hide the implicit public one.(’¢Å
+^squid:CallToDeprecatedMethod"3Remove this use of "newInstance"; it is deprecated.(±·Ëâúÿÿÿÿ
+0squid:S2326"R is not used in the class.(’¢Å
+@squid:S1168"+Return an empty collection instead of null.(¥¹ï
+0squid:S2326"T is not used in the class.(’¢Å
