@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.wanghaotian.example.utils.mapsearch.MapSearchUtils.getRequestUrlPara;
 import static com.wanghaotian.example.utils.mapsearch.baidu.BaseBaiduMapSearchObj.SEARCH_TYPE_ENUM.*;
@@ -40,11 +41,25 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     private static final String CIRCULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.CircularBaiduMapSearchObj";
     private static final String PLACE_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.PlaceBaiduMapSearchObj";
     private static final String RECTANGULAR_BAIDU_SEARCHOBJECT_NAME = "com.wanghaotian.example.utils.mapsearch.baidu.RectangularBaiduMapSearchObj";
-    private static final String[] REQUESTS_URL = {"http://maponline0.bdimg.com",
-            "http://maponline1.bdimg.com",
-            "http://maponline2.bdimg.com",
-            "http://maponline3.bdimg.com"};
+    private static final String REQUESTS_URL = "http://maponline0.bdimg.com";
+//    private static final String[] REQUESTS_URL =
+            {
+//            "http://maponline0.bdimg.com"
+//            ,
+//            "http://maponline1.bdimg.com",
+//            "http://maponline2.bdimg.com",
+//            "http://maponline3.bdimg.com"
+    };
     private static final String WEB_RESOURCE = "./src/main/resources/static/js/tiles";
+
+    private AtomicInteger addX=new AtomicInteger();
+    private AtomicInteger addY=new AtomicInteger();
+    private AtomicInteger addZ=new AtomicInteger();
+    private static final int MAX_X=99999;
+    private static final int MAX_Y=99999;
+    private static final int MAX_Z=20;
+
+
 
     public static PlaceBaiduMapSearchObj getPlaceBaiduMapSearchObject() {
         return new PlaceBaiduMapSearchObj(PLACE);
@@ -268,11 +283,44 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     private String doRequest(String requestUri) {
         return HttpRequest.get(requestUri).body();
     }
+    /**
+     *
+     * */
+    public void getStaticResourceJob()
+    {
+        while(addX.get()<99999&&addY.get()<99999&&addZ.get()<20){
+        try {
+            logic(addX,addY,addZ);
+        }catch (Exception e)
+        {   log.info("发生异常:",e);
+            getStaticResourceJob();
+        }
+        }
+    }
+
+    private void logic(AtomicInteger aX,AtomicInteger aY,AtomicInteger aZ){
+        for (aX.get();aX.get()<MAX_X; aX.incrementAndGet())
+        {
+            for (aY.get();aY.get()<MAX_Y;aY.incrementAndGet())
+            {
+                for (aZ.get(); aZ.get()<MAX_Z;aZ.incrementAndGet())
+                {
+                    getStaticResource(aX.get(),aY.get(),aZ.get());
+                }
+                aZ.set(0);
+            }
+            aY.set(0);
+            aZ.set(0);
+        }
+
+    }
 
 
-    public static void getStaticResource(final int x, final int y, final int z) {
-        for (String url : REQUESTS_URL) {
-            String s = url + "/tile/?qt=vtile&x=" + x + "&y=" + y + "&z=" + z + "&styles=pl&scaler=2&from=jsapi2_0";
+
+
+    public static void getStaticResource(int x,int y,int z) {
+//        for (String url : REQUESTS_URL) {
+            String s = REQUESTS_URL + "/tile/?qt=vtile&x=" + x + "&y=" + y + "&z=" + z + "&styles=pl&scaler=2&from=jsapi2_0";
             log.info("请求地址:{}", s);
             HttpRequest.keepAlive(true);
             HttpRequest httpRequest = HttpRequest.get(s);
@@ -280,18 +328,16 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
             byte[] bytes = null;
             try {
                 int length = fileString.available();
-                if (length < 100) {
-                    continue;
+                if (length < 221) {
+                    return;
                 }
                 bytes = new byte[length];
                 fileString.read(bytes);
                 if (isHTML(bytes)) {
-                    continue;
-                } else {
-                    log.info("不是html!");
+                    return;
                 }
             } catch (IOException e) {
-                log.info("{}", e);
+                log.info("这里有个异常:{}", e);
             }
             File imageFile = new File(WEB_RESOURCE+File.separatorChar + z +File.separatorChar + x + File.separatorChar + y + ".jpg");
             try {
@@ -308,12 +354,10 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
                 outputStream.write(bytes);
             } catch (IOException e) {
                 log.info("IO出现异常:{}", e);
-            } finally {
+            }    log.info("完成");
+//            break;
+//        }
 
-                log.info("完成");
-            }
-            break;
-        }
     }
 
     private static boolean isHTML(byte[] bytes) {

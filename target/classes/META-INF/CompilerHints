@@ -1,0 +1,11 @@
+dontinline,*.*_all_jmhStub
+dontinline,*.*_avgt_jmhStub
+dontinline,*.*_sample_jmhStub
+dontinline,*.*_ss_jmhStub
+dontinline,*.*_thrpt_jmhStub
+inline,com/wanghaotian/example/JMHSample_38_PerInvokeSetup$Data.setup
+inline,com/wanghaotian/example/JMHSample_38_PerInvokeSetup$DataCopy.setup2
+inline,com/wanghaotian/example/JMHSample_38_PerInvokeSetup.measureNeutral
+inline,com/wanghaotian/example/JMHSample_38_PerInvokeSetup.measureRight
+inline,com/wanghaotian/example/JMHSample_38_PerInvokeSetup.measureWrong
+inline,com/wanghaotian/example/MapSearchTest.baiduTest

@@ -6,15 +6,6 @@ import com.wanghaotian.example.utils.mapsearch.baidu.BaiduMapSearchUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import sun.misc.BASE64Decoder;
-
-import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageOutputStream;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
 @Slf4j
 /**
@@ -36,19 +27,8 @@ public class IndexController {
     }
 
     public static void main(String[] args) {
-
-            for (int x = 0; x < 99999; x++) {
-                for (int y = 0; y < 99999; y++) {
-                    for (int z = 0; z < 20; z++) {
-                        BaiduMapSearchUtils baiduMapSearchUtils= MapSearchUtils.getBaiduMapSearchUtils();
-                        baiduMapSearchUtils.getStaticResource(x,y,z);
-                    }
-                }
-            }
-
-//        BaiduMapSearchUtils baiduMapSearchUtils= MapSearchUtils.getBaiduMapSearchUtils();
-//                        baiduMapSearchUtils.getStaticResource(12643,4713,16);
-
+        BaiduMapSearchUtils mapSearchUtils=MapSearchUtils.getBaiduMapSearchUtils();
+        mapSearchUtils.getStaticResourceJob();
     }
 
 
