@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchAutoConfiguration;
 import org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchDataAutoConfiguration;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * @author : wanghaotian

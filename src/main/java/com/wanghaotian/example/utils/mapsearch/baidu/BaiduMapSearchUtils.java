@@ -54,7 +54,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
 
     private AtomicInteger addX=new AtomicInteger();
     private AtomicInteger addY=new AtomicInteger();
-    private AtomicInteger addZ=new AtomicInteger();
+    private AtomicInteger addZ=new AtomicInteger(16);
     private static final int MAX_X=99999;
     private static final int MAX_Y=99999;
     private static final int MAX_Z=20;
@@ -288,13 +288,13 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
      * */
     public void getStaticResourceJob()
     {
-        while(addX.get()<99999&&addY.get()<99999&&addZ.get()<20){
-        try {
-            logic(addX,addY,addZ);
-        }catch (Exception e)
-        {   log.info("发生异常:",e);
-            getStaticResourceJob();
-        }
+        while (addX.get() < 99999 && addY.get() < 99999) {
+            try {
+                logic(addX, addY, addZ);
+            } catch (Exception e) {
+                log.info("发生异常:", e);
+                getStaticResourceJob();
+            }
         }
     }
 
@@ -303,11 +303,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
         {
             for (aY.get();aY.get()<MAX_Y;aY.incrementAndGet())
             {
-                for (aZ.get(); aZ.get()<MAX_Z;aZ.incrementAndGet())
-                {
                     getStaticResource(aX.get(),aY.get(),aZ.get());
-                }
-                aZ.set(0);
             }
             aY.set(0);
             aZ.set(0);
@@ -364,6 +360,10 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
         String reg = "<html>";
         String result = new String(bytes, StandardCharsets.UTF_8);
         return result.startsWith(reg);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Math.pow(4,14));
     }
 
 
