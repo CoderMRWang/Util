@@ -1,70 +1,63 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta content="initial-scale=1.0, user-scalable=no" name="viewport"/>
-    <style type="text/css">
-        body, html {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            font-family: "微软雅黑";
-        }
-
-        #allmap {
-            width: 100%;
-            height: 100%;
-        }
-
-        #r-result {
-            width: 100%;
-            margin-top: 5px;
-        }
-
-        p {
-            margin: 5px;
-            font-size: 14px;
-        }
-    </style>
-    <script src="//api.map.baidu.com/api?v=2.0&ak=Vrv2rCkmEi1TXNEKCT8njLyECvGFSxqk" type="text/javascript"></script>
-    <title>添加/删除工具条、比例尺控件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./xlsx.full.min.js"></script>
+    <title>js导入导出excel</title>
 </head>
 <body>
-<div id="allmap"></div>
+<input type="file" id="file">
 
+<a href="javascript:void(0)" id="export">导出</a>
 </body>
 </html>
-<script type="text/javascript">
-    // 百度地图API功能
-    var map = new BMap.Map("allmap");
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+<script type="text/javascript" src="./imex_port.js"></script>
+<script>
+    window.onload = function () {
+        var file = document.getElementById("file")
+        var exp = document.getElementById("export")
+        file.onchange = function() {
+            var _this = this;
+            // 需要注意要导入的Excel文件最好把数据格式转为文本格式
+            imExPortPlugin.import({
+                "dom":_this,// 导入文件时的input dom
+                "format":[
+                    {"old":"序号","new":"id"},
+                    {"old":"时间","new":"time"},
+                    {"old":"操作员","new":"operator"},
+                    {"old":"内容","new":"content"},
+                ],
+                "success":function (res) {
+                    console.log("最终结果",res)
 
-    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
-    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
-    var top_right_navigation = new BMap.NavigationControl({
-        anchor: BMAP_ANCHOR_TOP_RIGHT,
-        type: BMAP_NAVIGATION_CONTROL_SMALL
-    }); //右上角，仅包含平移和缩放按钮
+                }//导入成功后的回调
+            })
+        }
 
-    map.addControl(top_left_control);
-    map.addControl(top_left_navigation);
-    map.addControl(top_right_navigation);
+        exp.onclick = function () {
+            var _this = this;
+            imExPortPlugin.export({
+                "data":[
+                    {"id":1,"time":"2018-08-01"},
+                    {"id":2,"time":"2018-08-02"},
+                    {"id":3,"time":"2018-08-03"},
+                    {"id":4,"time":"2018-08-04"},
+                    {"id":5,"time":"2018-08-05"}
+                ],
+                "format":[
+                    {"old":"id","new":"序号"},
+                    {"old":"time","new":"时间"},
+                ],
+                "dom":_this,
+                "filename":"测试文件.xlsx",
+                "success":function () {
+                    console.log("导出成功")
+                }
+            })
+        }
 
-    var json_data = [[116.404, 39.915], [116.383752, 39.91334], [116.384502, 39.932241]];
-    var pointArray = new Array();
-    for (var i = 0; i < json_data.length; i++) {
-        var marker = new BMap.Marker(new BMap.Point(json_data[i][0], json_data[i][1])); // 创建点
-        map.addOverlay(marker);    //增加点
-        pointArray[i] = new BMap.Point(json_data[i][0], json_data[i][1]);
-        marker.addEventListener("click", attribute);
     }
-    //让所有点在视野范围内
-    map.setViewport(pointArray);
-
-    //获取覆盖物位置
-    function attribute(e) {
-        var p = e.target;
-        alert("marker的位置是" + p.getPosition().lng + "," + p.getPosition().lat);
-    }
-
 </script>
