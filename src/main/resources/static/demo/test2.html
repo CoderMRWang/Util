@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="Modern effects and styles for off-canvas navigation with CSS transitions and SVG animations using Snap.svg"
+      name="description"/>
+<meta content="sidebar, off-canvas, menu, navigation, effect, inspiration, css transition, SVG, morphing, animation"
+      name="keywords"/>
+<meta content="Codrops" name="author"/>
+<link href="../demo/css/normalize.css" rel="stylesheet" type="text/css"/>
+<link href="../demo/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="../demo/css/menu_bubble.css" rel="stylesheet" type="text/css"/>
+<link href="../demo/themes/default/easyui.css" rel="stylesheet" type="text/css">
+<link href="../demo/themes/icon.css" rel="stylesheet" type="text/css">
+<link href="../demo/css/demo.css" rel="stylesheet" type="text/css">
+<link href="../demo/css/menu_topside.css" rel="stylesheet" type="text/css"/>
+
+
+<script src="js/snap.svg-min.js"></script>
+<script src="jquery.min.js" type="text/javascript"></script>
+<script src="jquery.easyui.min.js" type="text/javascript"></script>
+<script src="../demo/js/jsTree/jstree.js" type="text/javascript"></script>
+<script src="../demo/js/jsTree/jstree.checkbox.js" type="text/javascript"></script>
+<script src="../demo/js/zTree_v3/js/jquery.ztree.core.js"
+        type="text/javascript"></script>
+<script src="../demo/js/zTree_v3/js/jquery.ztree.excheck.js"
+        type="text/javascript"></script>
+<script src="../demo/js/zTree_v3/js/jquery.ztree.exhide.js"
+        type="text/javascript"></script>
+<link href="../demo/js/zTree_v3/css/zTreeStyle/zTreeStyle.css"
+      rel="stylesheet"
+      type="text/css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="menu-wrap" style="position:absolute;height: 100%;width: 20%">
+        <nav class="menu" style="border-color:#fafafa;color: #fafafa">
+            <div class="icon-list" id="menulist">
+                <div class="ztree" id="menuapp">
+                </div>
+            </div>
+        </nav>
+        <nav class="menu-side">
+            <a href="#">Recent Stories</a>
+            <a href="#">Reading List</a>
+            <a href="#">My Stories</a>
+            <a href="#">Categories</a>
+        </nav>
+        <button class="close-button" id="close-button">Close Menu</button>
+        <div class="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z"
+             id="morph-shape"
+             style="background:#b4bad2">
+            <svg height="100%" preserveAspectRatio="none" viewBox="0 0 100 800" width="100%"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z" style="background:#b4bad2"/>
+            </svg>
+        </div>
+    </div>
+    <div class="top-container" style="position: absolute;left: 25%;width: 100%">
+        <nav class="menu-top" id="menu-top" style="background-color: #00B83F;display: none">
+            <div class="profile"><span>Matthew Greenberg</span></div>
+        </nav>
+    </div>
+    <button id="open-button">Open Menu</button>
+    <!-- /content-wrap -->
+</div><!-- /container -->
+
+</div>
+<script src="js/classie.js"></script>
+<script src="js/main4.js"></script>
+
+<script>
+    var nodeId = "";
+    var localObj = window.location;
+    var contextPath = localObj.pathname.split("/")[1];
+    var basePath = localObj.protocol + "//" + localObj.host + "/" + contextPath;
+    var setting = {
+        check: {
+            enable: true,
+            nocheckInherit: true,
+            chkboxType: {"Y": "p", "N": "ps"}
+        },
+        data: {
+            key: {
+                title: "title"
+            },
+            simpleData: {
+                enable: true
+            }
+        },
+        keep: {
+            leaf: true,
+            parent: true
+        },
+        edit: {
+            drag: {
+                autoExpandTrigger: true,
+                isCopy: false,
+                isMove: true
+            },
+        },
+        callback: {
+            onClick: onClick,
+            // onDrop: onDrop,
+            // beforeDrag: zTreeBeforeDrag,
+            // beforeDrop: zTreeBeforeDrop,
+            onRightClick: zTreeOnRightClick
+
+        }
+    };
+
+    function setNodeId(nId) {
+        nodeId = nId;
+    }
+
+    function getNodeId() {
+        return nodeId;
+    }
+
+
+    function setNodeDepth(depth) {
+        ndepth = depth;
+    }
+
+
+    function mouseover(e) {
+        $(e).siblings().css("background-color", "");
+        $(e).css("background-color", "#00FFCC");
+    }
+
+    function zTreeOnRightClick(event, treeId, treeNode) {
+        console.log(treeNode);
+        nodeId = treeNode.id;
+        var nodeName = treeNode.name;
+        var nodePid = treeNode.pid;
+        var href = treeNode.href;
+        var depth = treeNode;
+        var ofLeft = document.documentElement.offsetLeft || document.body.offsetLeft;
+        var ofTop = document.documentElement.offsetTop || document.body.offsetTop;
+        var x = event.pageX;
+        var y = event.pageY;
+        var rightMenu = $("#rightMenu");
+        rightMenu.css('left', x + ofLeft);
+        rightMenu.css('top', y + ofTop);
+        rightMenu.toggle();
+        setNodeId(nodeId);
+        console.log(treeNode);
+        if (!treeNode.children) {
+            $("#deleteNoP").show();
+            setNodeId(null);
+        }
+        setNodeDepth(depth);
+        // insert(treeNode.id);
+    }
+
+    $(function () {
+            var nodes = [
+                {
+                    name: "父节点1", children: [
+                        {name: "子节点1"},
+                        {name: "子节点2", children: [{name: '节点二子节点'}]}
+                    ]
+                }
+            ];
+            data = eval(nodes);
+            $.fn.zTree.init($("#menuapp"), setting, data);
+
+        }
+    );
+
+    function insert(id) {
+        var codeContent = "";
+        var caseName = "";
+        $.post(basePath + "/tree/ajax/insert", {
+            Pid: id,
+            caseName: caseName,
+            codeContent: codeContent
+        }, function (data) {
+
+        });
+    }
+
+    function insertRoot() {
+        setNodeId(0);
+        insertDialog();
+    }
+
+
+    function insertZnodes() {
+        insertDialog();
+    }
+
+    function insertDialog() {
+        bootbox.dialog({
+            title: "新增下级节点",
+            message: '<iframe id="innerframe" src="<%=request.getContextPath()%>/case/select/newcase?pid=' + getNodeId() + '"></iframe>',
+            onEscape: function () {
+                window.location.href = basePath + "/tree/structs";
+            }
+        });
+    }
+
+    function updateZnodes() {
+
+    }
+
+    function deleteZnodes() {
+        confirm("确定删除该节点?", function (result) {
+            if (result) {
+                $.post(basePath + "/tree/ajax/deleteTreeNode", {nodeId: nodeId}, function (d) {
+                    var data = JSON.parse(d);
+                    if (data.result == 1) {
+                        bootbox.alert("操作成功!");
+                    } else {
+                        bootbox.alert("操作失败!");
+                    }
+                });
+            }
+        });
+    }
+
+    function frameToUrl(url) {
+        var $frame = $("#iframe");
+        $frame.attr("src", url);
+        $frame.show();
+        $frame.reload;
+
+    }
+
+    function onClick(e, treeId, treeNode) {
+        var href = treeNode.href;
+        console.log(treeNode);
+        if (href) {
+            window.location.href = basePath + href;
+        }
+    }
+</script>
+
+<div hidden="" id="rightMenu" style="width: 100px; height:auto;">
+    <p onclick="insertZnodes();"
+       onmouseover="mouseover(this);" style="padding-left:10px;line-height: 25px;">
+        新增下级
+    </p>
+    <p onclick="updateZnodes();" onmouseover="mouseover(this);" style="padding-left:10px;line-height: 25px">
+        编辑 </p>
+
+    <p hidden="" id="deleteNoP" onclick="deleteZnodes();"
+       onmouseover="mouseover(this)" style="padding-left:10px;line-height: 25px">删除</p>
+</div>
+</body>
+</html>

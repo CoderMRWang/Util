@@ -37,8 +37,8 @@
     <orderEntry type="library" name="Maven: com.twelvemonkeys.imageio:imageio-pdf:3.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.twelvemonkeys.imageio:imageio-core:3.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.twelvemonkeys.common:common-lang:3.4.1" level="project" />
-    <orderEntry type="library" name="Maven: com.twelvemonkeys.common:common-io:3.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.twelvemonkeys.common:common-image:3.4.1" level="project" />
+    <orderEntry type="library" name="Maven: com.twelvemonkeys.common:common-io:3.5" level="project" />
     <orderEntry type="library" name="Maven: net.coobird:thumbnailator:0.4.8" level="project" />
     <orderEntry type="library" name="Maven: org.openjdk.jmh:jmh-generator-annprocess:1.21" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:28.2-jre" level="project" />
