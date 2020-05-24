@@ -52,11 +52,11 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     };
     private static final String WEB_RESOURCE = "./src/main/resources/static/js/tiles";
 
-    private AtomicInteger addX=new AtomicInteger();
+    private AtomicInteger addX=new AtomicInteger(0);
     private AtomicInteger addY=new AtomicInteger();
-    private AtomicInteger addZ=new AtomicInteger(16);
-    private static final int MAX_X=99999;
-    private static final int MAX_Y=99999;
+    private AtomicInteger addZ=new AtomicInteger(12);
+    private static final int MAX_X=500;
+    private static final int MAX_Y=500;
     private static final int MAX_Z=20;
 
 
@@ -288,7 +288,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
      * */
     public void getStaticResourceJob()
     {
-        while (addX.get() < 99999 && addY.get() < 99999) {
+        while (addX.get() < 2048 && addY.get() < 2048) {
             try {
                 logic(addX, addY, addZ);
             } catch (Exception e) {
@@ -306,7 +306,6 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
                     getStaticResource(aX.get(),aY.get(),aZ.get());
             }
             aY.set(0);
-            aZ.set(0);
         }
 
     }
@@ -324,9 +323,6 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
             byte[] bytes = null;
             try {
                 int length = fileString.available();
-                if (length < 221) {
-                    return;
-                }
                 bytes = new byte[length];
                 fileString.read(bytes);
                 if (isHTML(bytes)) {
@@ -348,11 +344,11 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
             try (
                 FileImageOutputStream outputStream = new FileImageOutputStream(imageFile);) {
                 outputStream.write(bytes);
+
             } catch (IOException e) {
                 log.info("IO出现异常:{}", e);
             }    log.info("完成");
-//            break;
-//        }
+
 
     }
 
@@ -363,7 +359,7 @@ public class BaiduMapSearchUtils implements BaseMapSearchUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(Math.pow(4,14));
+        System.out.println(Math.pow(2,11));
     }
 
 

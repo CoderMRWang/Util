@@ -20,30 +20,32 @@ public class Test {
             'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 'y', 'u', 'v', 'w', 'x', 'y', 'z'};
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException, ClassNotFoundException, TimeoutException {
-
-        Thread thread1 = new Thread(() -> {
-            while (num.get() < 26) {
-                try {
-                    semaphore.acquire();
-                    System.out.println(num.incrementAndGet());
-                    semaphoreb.release();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        Thread thread2 = new Thread(() -> {
-            while (num.get() < 26) {
-                try {
-                    semaphoreb.acquire();
-                    System.out.println(bits[num.get()-1]);
-                    semaphore.release();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        int in=5;
+        log.info("{}",++in+ ++in);
+        assert(13==in);
+//        Thread thread1 = new Thread(() -> {
+//            while (num.get() < 26) {
+//                try {
+//                    semaphore.acquire();
+//                    System.out.println(num.incrementAndGet());
+//                    semaphoreb.release();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        Thread thread2 = new Thread(() -> {
+//            while (num.get() < 26) {
+//                try {
+//                    semaphoreb.acquire();
+//                    System.out.println(bits[num.get()-1]);
+//                    semaphore.release();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
 
 //        ClassPathXmlApplicationContext patternResolver=new ClassPathXmlApplicationContext();
@@ -91,7 +93,7 @@ public class Test {
         CountDownLatch countDownLatch=new CountDownLatch(2);
         countDownLatch.countDown();
 
-        phaser.arriveAndAwaitAdvance();
+//        phaser.arriveAndAwaitAdvance();
 
         StampedLock stampedLock=new StampedLock();
     }

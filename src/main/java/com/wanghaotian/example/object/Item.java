@@ -1,5 +1,7 @@
 package com.wanghaotian.example.object;
 
+import com.alibaba.fastjson.JSON;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -9,7 +11,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  * author;Wanghaotian
  * data:2020/3/30 0030
  */
-
+@Data
 @Document(indexName = "item",type = "docs", shards = 1, replicas = 0)
 public class Item {
     @Id
@@ -76,5 +78,10 @@ public class Item {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }
