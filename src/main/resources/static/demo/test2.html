@@ -11,7 +11,7 @@
 <link href="../demo/css/normalize.css" rel="stylesheet" type="text/css"/>
 <link href="../demo/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="../demo/css/menu_bubble.css" rel="stylesheet" type="text/css"/>
-<link href="../demo/themes/default/easyui.css" rel="stylesheet" type="text/css">
+<link href="../demo/themes/defat/easyui.css" rel="stylesheet" type="text/css">
 <link href="../demo/themes/icon.css" rel="stylesheet" type="text/css">
 <link href="../demo/css/demo.css" rel="stylesheet" type="text/css">
 <link href="../demo/css/menu_topside.css" rel="stylesheet" type="text/css"/>
@@ -36,7 +36,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-
+        .ztree li span.button.switch{margin-right:5px}
+        .ztree   li{display:inline-block;white-space:normal}
+        .ztree>li>>li{padding:5px}
+        .ztree>li{background: #dae6f0}
+        .ztree>li:nth-child(even)>>li:nth-child(even){background: #eef5fa}
+        .ztree>li:nth-child(even)>>li:nth-child(odd){background: #f6fbff}
+        .ztree>li:nth-child(odd)>>li:nth-child(even){background: #eef5fa}
+        .ztree>li:nth-child(odd)>>li:nth-child(odd){background: #f6fbff}
+        .ztree>li>{margin-top:12px}
+        .ztree>li{padding:15px;padding-right:25px}
+        .ztree li{white-space:normal!important}
+        .ztree>li>a>span{font-size:15px;font-weight:700}
 
     </style>
 </head>
@@ -44,7 +55,7 @@
 <div class="container">
     <div class="menu-wrap" style="position:absolute;height: 100%;width: 20%">
         <nav class="menu" style="border-color:#fafafa;color: #fafafa">
-            <div class="icon-list" id="menulist">
+            <div class="icon-list" id="menist">
                 <div class="ztree" id="menuapp">
                 </div>
             </div>
@@ -64,11 +75,6 @@
                 <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z" style="background:#b4bad2"/>
             </svg>
         </div>
-    </div>
-    <div class="top-container" style="position: absolute;left: 25%;width: 100%">
-        <nav class="menu-top" id="menu-top" style="background-color: #00B83F;display: none">
-            <div class="profile"><span>Matthew Greenberg</span></div>
-        </nav>
     </div>
     <button id="open-button">Open Menu</button>
     <!-- /content-wrap -->
@@ -156,7 +162,7 @@
         console.log(treeNode);
         if (!treeNode.children) {
             $("#deleteNoP").show();
-            setNodeId(null);
+            setNodeId(nl);
         }
         setNodeDepth(depth);
         // insert(treeNode.id);
@@ -214,11 +220,11 @@
     }
 
     function deleteZnodes() {
-        confirm("确定删除该节点?", function (result) {
-            if (result) {
+        confirm("确定删除该节点?", function (rest) {
+            if (rest) {
                 $.post(basePath + "/tree/ajax/deleteTreeNode", {nodeId: nodeId}, function (d) {
                     var data = JSON.parse(d);
-                    if (data.result == 1) {
+                    if (data.rest == 1) {
                         bootbox.alert("操作成功!");
                     } else {
                         bootbox.alert("操作失败!");

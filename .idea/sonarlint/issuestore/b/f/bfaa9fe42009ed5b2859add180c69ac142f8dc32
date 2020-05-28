@@ -1,5 +1,16 @@
 
-p
-java:S3776¹"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(´ŠÕË8•çœ.
+F
+java:S1068<")Remove this unused "MAX_Z" private field.(¾Åáå8×Ä©ò .
+>
+java:S11164"Remove this empty statement.(ôŸìúÿÿÿÿ8—ìñŸ.
+_	java:S899Ô"BDo something with the "boolean" value returned by "createNewFile".(Ù‹¹8úÈÉïŸ.
+m
+java:S2674Ç"JCheck the return value of the "read" call to see how many bytes were read.(•Ñõ·ÿÿÿÿÿ8úÈÉïŸ.
+Y	java:S125½"<This block of commented-out lines of code should be removed.(Æÿ ñ8 æšñŸ.
+{
+java:S1171."YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8—ìñŸ.
+V	java:S106ê"9Replace this use of System.out or System.err by a logger.(€ÀŞÇ8Öü¶ò .
 i
-java:S2259Ä"KA "NullPointerException" could be thrown; "stringBuilder" is nullable here.(’½–¥8’Ïö›.
+java:S2259İ"KA "NullPointerException" could be thrown; "stringBuilder" is nullable here.(’½–¥8¿®×ëŸ.
+p
+java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(´ŠÕË8Ş¼îëŸ.
